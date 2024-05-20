@@ -1,25 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CannonController : MonoBehaviour
 {
     public GameObject projectilePrefab;
-    public Transform shootPoint;
-    public float shootForce = 10f;
+    public Transform firePoint;
+    public int maxProjectiles = 30;
+
+    private int currentProjectiles;
+    public Text projectileCountText;
+
+    void Start()
+    {
+        currentProjectiles = maxProjectiles;
+        UpdateProjectileCountUI();
+    }
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1")) // Change "Fire1" to the desired input button
+        if (Input.GetMouseButtonDown(0) && currentProjectiles > 0)
         {
-            Shoot();
+            FireProjectile();
         }
     }
 
-    void Shoot()
+    void FireProjectile()
     {
-        GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        rb.AddForce(shootPoint.right * shootForce, ForceMode2D.Impulse);
+        rb.velocity = transform.right * projectile.GetComponent<ProjectileController>().speed;
+
+        currentProjectiles--;
+        UpdateProjectileCountUI();
+    }
+
+    void UpdateProjectileCountUI()
+    {
+        projectileCountText.text = "Projectiles: " + currentProjectiles;
     }
 }

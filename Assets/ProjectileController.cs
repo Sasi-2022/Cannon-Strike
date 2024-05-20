@@ -6,6 +6,7 @@ public class ProjectileController : MonoBehaviour
 {
     private bool hasEnteredBox = false;
     public Transform boxTransform;
+    public float speed = 10f;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -24,7 +25,7 @@ public class ProjectileController : MonoBehaviour
         if (hasEnteredBox && boxTransform != null)
         {
             // Move the projectile to the center of the box collider
-            transform.position = boxTransform.position;
+            transform.position = boxTransform.position * speed;
         }
     }
 
