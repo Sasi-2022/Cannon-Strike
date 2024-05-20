@@ -18,6 +18,9 @@ public class ProjectileController : MonoBehaviour
             collected = true;
             // Disable the collider to prevent further interactions
             GetComponent<Collider2D>().enabled = false;
+            // Set Rigidbody to kinematic
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            rb.isKinematic = true;
             // Notify the GameManager that the projectile is collected
             GameManager.instance.IncreaseCollectedCount();
         }

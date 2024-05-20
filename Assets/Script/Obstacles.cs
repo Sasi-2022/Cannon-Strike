@@ -14,7 +14,7 @@ public class Obstacles : MonoBehaviour
     void Update()
     {
         float distance = 2f;
-        float speed = 1f;
+        float speed = 2f;
 
         float yPos = transform.position.y;
         float zPos = transform.position.z;
