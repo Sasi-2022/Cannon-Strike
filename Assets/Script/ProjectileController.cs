@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ProjectileController : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class ProjectileController : MonoBehaviour
     public float speed = 10f;
 
     private bool collected = false;
+
+    public static Action ballcollection;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -38,10 +41,18 @@ public class ProjectileController : MonoBehaviour
             transform.position = new Vector2(3, 0);
 
         }
-        if (collision.collider.CompareTag("Collector"))
+        if (collision.collider.CompareTag("Collector") )
         {
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+            ballcollection.Invoke();
+        }
+
+        if (collision.collider.CompareTag("Ball"))
+        {
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+           // ballcollection.Invoke();
 
         }
     }

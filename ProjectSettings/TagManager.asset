@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collector
   - obstacle
+  - Ball
   layers:
   - Default
   - TransparentFX
