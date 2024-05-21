@@ -30,4 +30,13 @@ public class ProjectileController : MonoBehaviour
     {
         return collected;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("obstacle"))
+        {
+            transform.position = new Vector2(3, 0);
+
+        }
+    }
 }
