@@ -33,16 +33,10 @@ public class ProjectileController : MonoBehaviour
         else if (collision.collider.CompareTag("Collector"))
         {
             
-            Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.velocity = Vector2.zero;
-                rb.angularVelocity = 0f;
-                rb.simulated = false; 
-                rb.gravityScale = 0f;
+            
                 collected = true;
                 ballcollection?.Invoke(); 
-            }
+            
         }
     }
 
