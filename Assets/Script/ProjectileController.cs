@@ -27,18 +27,20 @@ public class ProjectileController : MonoBehaviour
             if (rb != null)
             {
                 Vector2 direction = (collision.transform.position - transform.position).normalized;
-                rb.AddForce(-direction * 10f, ForceMode2D.Impulse); 
+                rb.AddForce(-direction * 60f, ForceMode2D.Impulse); 
             }
         }
-        else if (collision.collider.CompareTag("Collector"))
+        if (collision.collider.CompareTag("Collector"))
         {
-            
-            
-                collected = true;
-                ballcollection?.Invoke(); 
-            
+            Debug.Log("b---");
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            //ballcollection.Invoke();
+           // rb.constraints = RigidbodyConstraints2D.FreezePositionY;
         }
+
+
     }
+
 
     private void CollectBall()
     {
@@ -51,6 +53,7 @@ public class ProjectileController : MonoBehaviour
     {
         return collected;
     }
+
 }
 
 
