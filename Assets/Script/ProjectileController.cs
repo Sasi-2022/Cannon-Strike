@@ -5,55 +5,58 @@ using System;
 
 public class ProjectileController : MonoBehaviour
 {
-    
-    public float speed = 10f;
-
+    public float speed = 1f;
     private bool collected = false;
-
     public static Action ballcollection;
 
-    void OnTriggerEnter2D(Collider2D other)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        // Check if the projectile collides with the collector
         if (other.CompareTag("Collector"))
         {
-            // Mark the projectile as collected
-            collected = true;
-            // Disable the collider to prevent further interactions
-            GetComponent<Collider2D>().enabled = false;
-            // Set Rigidbody to kinematic
-            Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            rb.isKinematic = true;
-            // Notify the GameManager that the projectile is collected
-            GameManager.instance.IncreaseCollectedCount();
+            CollectBall();
         }
-    }
-
-    public bool IsCollected()
-    {
-        return collected;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("obstacle"))
         {
-            transform.position = new Vector2(3, 0);
-
-        }
-        if (collision.collider.CompareTag("Collector") )
-        {
+            
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
-            ballcollection.Invoke();
+            if (rb != null)
+            {
+                Vector2 direction = (collision.transform.position - transform.position).normalized;
+                rb.AddForce(-direction * 10f, ForceMode2D.Impulse); 
+            }
         }
-
-        if (collision.collider.CompareTag("Ball"))
+        else if (collision.collider.CompareTag("Collector"))
         {
+            
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
-           // ballcollection.Invoke();
-
+            if (rb != null)
+            {
+                rb.velocity = Vector2.zero;
+                rb.angularVelocity = 0f;
+                rb.simulated = false; 
+                rb.gravityScale = 0f;
+                collected = true;
+                ballcollection?.Invoke(); 
+            }
         }
     }
+
+    private void CollectBall()
+    {
+        collected = true;
+        gameObject.SetActive(false); 
+        GameManager.instance.IncreaseCollectedCount(); 
+    }
+
+    public bool IsCollected()
+    {
+        return collected;
+    }
 }
+
+

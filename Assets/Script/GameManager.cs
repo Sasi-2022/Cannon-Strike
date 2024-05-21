@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     private int collectedCount = 0;
     public Text collectedCountText;
+    public GameObject box;
 
     void Awake()
     {
