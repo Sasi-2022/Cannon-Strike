@@ -38,5 +38,11 @@ public class ProjectileController : MonoBehaviour
             transform.position = new Vector2(3, 0);
 
         }
+        if (collision.collider.CompareTag("Collector"))
+        {
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+
+        }
     }
 }

@@ -849,10 +849,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
-    - target: {fileID: 2216767634001414841, guid: f7d7f76901a034964b7681740333668c, type: 3}
-      propertyPath: m_LayerOverridePriority
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 5142549153389016215, guid: f7d7f76901a034964b7681740333668c, type: 3}
       propertyPath: collectedCountText
       value: 
