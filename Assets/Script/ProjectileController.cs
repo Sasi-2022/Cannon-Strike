@@ -34,7 +34,7 @@ public class ProjectileController : MonoBehaviour
         {
             Debug.Log("b---");
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            //ballcollection.Invoke();
+            ballcollection.Invoke();
            // rb.constraints = RigidbodyConstraints2D.FreezePositionY;
         }
 
