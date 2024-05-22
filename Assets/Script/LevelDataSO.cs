@@ -14,5 +14,8 @@ public class Level
 {
     public int Id;
     public string LevelsNo;
+    public float position;
+    public float rotation;
+    public GameObject obstacle;
     
 }

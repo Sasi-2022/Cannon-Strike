@@ -13,5 +13,23 @@ MonoBehaviour:
   m_Name: LevelData
   m_EditorClassIdentifier: 
   levels:
-  - Id: 0
-    LevelsNo: 
+  - Id: 1
+    LevelsNo: 1
+    position: 0.24
+    rotation: 70
+    obstacle: {fileID: 4039245247177400529, guid: 0178c5d48f01e43c291cf892e1a3fffd, type: 3}
+  - Id: 2
+    LevelsNo: 2
+    position: 0.24
+    rotation: 70
+    obstacle: {fileID: 6646366236241330636, guid: d84e26a0e1dc54c908335cb6dd26a5e2, type: 3}
+  - Id: 3
+    LevelsNo: 3
+    position: 0.24
+    rotation: 70
+    obstacle: {fileID: 4207449259072469554, guid: 71fc0d7c359fd44eda80d315760aedf4, type: 3}
+  - Id: 4
+    LevelsNo: 4
+    position: 0.24
+    rotation: 70
+    obstacle: {fileID: 1927488580744661561, guid: 639f0f69db39d477b900b9fcc4810c67, type: 3}
