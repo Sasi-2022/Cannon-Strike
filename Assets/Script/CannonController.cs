@@ -31,7 +31,7 @@ public class CannonController : MonoBehaviour
     {
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        rb.velocity = transform.forward * projectile.GetComponent<ProjectileController>().speed;
+        rb.velocity = transform.right * projectile.GetComponent<ProjectileController>().speed;
 
         currentProjectiles--;
         UpdateProjectileCountUI();
@@ -39,6 +39,6 @@ public class CannonController : MonoBehaviour
 
     void UpdateProjectileCountUI()
     {
-        projectileCountText.text = "Projectiles: " + currentProjectiles;
+        projectileCountText.text = currentProjectiles.ToString();
     }
 }

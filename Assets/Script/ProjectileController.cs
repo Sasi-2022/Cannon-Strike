@@ -27,16 +27,19 @@ public class ProjectileController : MonoBehaviour
             if (rb != null)
             {
                 Vector2 direction = (collision.transform.position - transform.position).normalized;
-                rb.AddForce(-direction * 100f, ForceMode2D.Impulse);
+                rb.AddForce(-direction * 60f, ForceMode2D.Impulse);
             }
         }
-        if (collision.collider.CompareTag("Collector"))
-        {
+       else if (collision.collider.CompareTag("Collector"))
+       {
+            PhysicsMaterial2D newMaterial = new PhysicsMaterial2D();
+            newMaterial.bounciness = 0f;
             Debug.Log("b---");
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             ballcollection.Invoke();
+
            // rb.constraints = RigidbodyConstraints2D.FreezePositionY;
-        }
+       }
 
 
     }
@@ -46,7 +49,6 @@ public class ProjectileController : MonoBehaviour
     {
         collected = true;
         gameObject.SetActive(false); 
-        GameManager.instance.IncreaseCollectedCount(); 
     }
 
     public bool IsCollected()
