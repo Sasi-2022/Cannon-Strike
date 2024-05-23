@@ -55,5 +55,37 @@ public class Levels : MonoBehaviour
         //level4.Invoke();
     }
 
-    
+    public void btn_level5()
+    {
+        pickedlevels = "Level5";
+        SceneManager.LoadScene(2);
+        //level4.Invoke();
+    }
+
+    public void btn_level6()
+    {
+        pickedlevels = "Level6";
+        SceneManager.LoadScene(2);
+        //level4.Invoke();
+    }
+
+    public void btn_level7()
+    {
+        pickedlevels = "Level7";
+        SceneManager.LoadScene(2);
+        //level4.Invoke();
+    }
+
+    public void btn_level8()
+    {
+        pickedlevels = "Level8";
+        SceneManager.LoadScene(2);
+        //level4.Invoke();
+    }
+    public void btn_level9()
+    {
+        pickedlevels = "Level9";
+        SceneManager.LoadScene(2);
+        //level4.Invoke();
+    }
 }
