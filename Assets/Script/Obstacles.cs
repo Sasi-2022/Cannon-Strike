@@ -13,7 +13,7 @@ public class Obstacles : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distance = 2f;
+        float distance = 1f;
         float speed = 2f;
 
         float yPos = transform.position.y;
