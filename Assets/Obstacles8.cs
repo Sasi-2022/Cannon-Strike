@@ -2,23 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacles : MonoBehaviour
+public class Obstacles8 : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         float distance = 2f;
         float speed = 2f;
 
-        float yPos = transform.position.y;
+        float yPos = Mathf.Sin(Time.time * speed) * distance;
         float zPos = transform.position.z;
-        float xPos = Mathf.Sin(Time.time * speed) * distance;
+        float xPos = transform.position.x;
 
         transform.position = new Vector3(xPos, yPos, zPos);
     }
