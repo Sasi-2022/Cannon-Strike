@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class CannonController : MonoBehaviour
 {
-
     public GameObject projectilePrefab;
     public Transform firePoint;
     public int maxProjectiles = 30;
+    private bool iscollided = false;
 
     private int currentProjectiles;
     public Text projectileCountText;
@@ -25,6 +25,7 @@ public class CannonController : MonoBehaviour
         {
             FireProjectile();
         }
+
     }
 
     void FireProjectile()
@@ -40,5 +41,13 @@ public class CannonController : MonoBehaviour
     void UpdateProjectileCountUI()
     {
         projectileCountText.text = currentProjectiles.ToString();
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Boundary"))
+        {
+            Destroy(gameObject); // Destroy the projectile
+        }
     }
 }

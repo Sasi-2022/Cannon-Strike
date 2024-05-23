@@ -7,6 +7,8 @@ TagManager:
   - Collector
   - obstacle
   - Ball
+  - wall
+  - Boundary
   layers:
   - Default
   - TransparentFX
