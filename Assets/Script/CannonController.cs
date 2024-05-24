@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class CannonController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class CannonController : MonoBehaviour
     public Transform firePoint;
     public int maxProjectiles = 30;
     private bool iscollided = false;
+    public static Action text;
 
     private int currentProjectiles;
     public Text projectileCountText;
@@ -16,7 +18,7 @@ public class CannonController : MonoBehaviour
     void Start()
     {
         currentProjectiles = maxProjectiles;
-        UpdateProjectileCountUI();
+      //  UpdateProjectileCountUI();
     }
 
     void Update()
@@ -35,13 +37,14 @@ public class CannonController : MonoBehaviour
         rb.velocity = transform.right * projectile.GetComponent<ProjectileController>().speed;
 
         currentProjectiles--;
-        UpdateProjectileCountUI();
+        text.Invoke();
+       // UpdateProjectileCountUI();
     }
 
-    void UpdateProjectileCountUI()
+   /* void UpdateProjectileCountUI()
     {
         projectileCountText.text = currentProjectiles.ToString();
-    }
+    }*/
 
     void OnTriggerEnter2D(Collider2D other)
     {
