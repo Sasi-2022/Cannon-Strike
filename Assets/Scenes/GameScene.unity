@@ -353,8 +353,8 @@ MonoBehaviour:
   obstacle5: {fileID: 1626386478285469090, guid: 9326f0f775bb24b6bba87c458aa164fa, type: 3}
   obstacle6: {fileID: 9169537074289660666, guid: 38d9c75423b364892995e3c518e7f244, type: 3}
   obstacle7: {fileID: 6869497251439403737, guid: 60547f7fd1710404d917bdfade538114, type: 3}
-  obstacle8: {fileID: 0}
-  obstacle9: {fileID: 0}
+  obstacle8: {fileID: 4448611331360176212, guid: 766eb2bcf83b5410cb3241d8ce222951, type: 3}
+  obstacle9: {fileID: 8637890095103620505, guid: 7c692e5d3ccb54b84bab9d2c29e2004a, type: 3}
 --- !u!1 &408699374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1429,7 +1429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2473687706170077644, guid: 2a295babd31d64f36a25c21b42800785, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4970848219504314745, guid: 2a295babd31d64f36a25c21b42800785, type: 3}
       propertyPath: projectileCountText

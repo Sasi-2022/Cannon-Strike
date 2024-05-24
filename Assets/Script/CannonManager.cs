@@ -72,10 +72,12 @@ public class CannonManager : MonoBehaviour
         if (Levels.instance.pickedlevels == "Level8")
         {
             Instantiate(cannon, cannonparent.transform);
+            cannonparent.transform.position = new Vector3(1.43f, 2.5f, 0);
         }
         if (Levels.instance.pickedlevels == "Level9")
         {
             Instantiate(cannon, cannonparent.transform);
+            cannonparent.transform.position = new Vector3(1.43f, 2.5f, 0);
         }
     }
 }
