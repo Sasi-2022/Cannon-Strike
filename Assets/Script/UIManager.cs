@@ -12,21 +12,28 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI counttext;
     public int totalcount;
     public int balls;
+    public int maxProjectiles = 30;
+    private int currentProjectiles;
+    public Text projectileCountText;
     public Button homeBtn;
 
     private void OnEnable()
     {
         ProjectileController.ballcollection += BallCount;
+        CannonController.text += UpdateProjectileCountUI;
     }
 
     private void OnDisable()
     {
         ProjectileController.ballcollection -= BallCount;
+        CannonController.text -= UpdateProjectileCountUI;
     }
 
     void Start()
     {
         homeBtn.onClick.AddListener(OnclickBtn);
+        currentProjectiles = maxProjectiles;
+        UpdateProjectileCountUI();
     }
 
     void Update()
@@ -43,5 +50,10 @@ public class UIManager : MonoBehaviour
     void OnclickBtn()
     {
         SceneManager.LoadScene("Level Map Scene");
+    }
+
+    void UpdateProjectileCountUI()
+    {
+        projectileCountText.text = currentProjectiles.ToString();
     }
 }
