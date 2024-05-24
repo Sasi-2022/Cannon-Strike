@@ -14,8 +14,9 @@ public class UIManager : MonoBehaviour
     public int balls;
     public int maxProjectiles = 30;
     private int currentProjectiles;
-    public Text projectileCountText;
+    public TextMeshProUGUI projectileCountText;
     public Button homeBtn;
+    
 
     private void OnEnable()
     {
@@ -43,7 +44,8 @@ public class UIManager : MonoBehaviour
 
     public void BallCount()
     {
-        balls++;
+        Debug.Log("count");
+        balls++; 
         counttext.text= $"{balls.ToString()}/{ totalcount.ToString()}";
     }
 

@@ -9,6 +9,7 @@ TagManager:
   - Ball
   - wall
   - Boundary
+  - Collect
   layers:
   - Default
   - TransparentFX

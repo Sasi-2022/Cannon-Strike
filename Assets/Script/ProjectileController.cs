@@ -12,9 +12,10 @@ public class ProjectileController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Collector"))
+        if (other.CompareTag("Collect"))
         {
-            CollectBall();
+           // CollectBall();
+            ballcollection.Invoke();
         }
     }
 
@@ -36,7 +37,7 @@ public class ProjectileController : MonoBehaviour
             newMaterial.bounciness = 0f;
             Debug.Log("b---");
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            ballcollection.Invoke();
+            
 
            // rb.constraints = RigidbodyConstraints2D.FreezePositionY;
        }
@@ -48,7 +49,7 @@ public class ProjectileController : MonoBehaviour
     private void CollectBall()
     {
         collected = true;
-        gameObject.SetActive(false); 
+        gameObject.SetActive(true); 
     }
 
     public bool IsCollected()
