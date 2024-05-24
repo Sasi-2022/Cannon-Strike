@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     private int currentProjectiles;
     public TextMeshProUGUI projectileCountText;
     public Button homeBtn;
+    public GameObject winningpanel;
     
 
     private void OnEnable()
@@ -35,6 +36,7 @@ public class UIManager : MonoBehaviour
         homeBtn.onClick.AddListener(OnclickBtn);
         currentProjectiles = maxProjectiles;
         UpdateProjectileCountUI();
+        WinningPanel();
     }
 
     void Update()
@@ -57,5 +59,13 @@ public class UIManager : MonoBehaviour
     void UpdateProjectileCountUI()
     {
         projectileCountText.text = currentProjectiles.ToString();
+    }
+
+    public void WinningPanel()
+    {
+        if (balls == totalcount)
+        {
+            winningpanel.SetActive(false);
+        }
     }
 }
