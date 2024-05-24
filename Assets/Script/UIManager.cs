@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI counttext;
     public int totalcount;
     public int balls;
+    public Button homeBtn;
 
     private void OnEnable()
     {
@@ -21,13 +24,11 @@ public class UIManager : MonoBehaviour
         ProjectileController.ballcollection -= BallCount;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        homeBtn.onClick.AddListener(OnclickBtn);
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -37,5 +38,10 @@ public class UIManager : MonoBehaviour
     {
         balls++;
         counttext.text= $"{balls.ToString()}/:{ totalcount.ToString()}";
+    }
+
+    void OnclickBtn()
+    {
+        SceneManager.LoadScene("Level Map Scene");
     }
 }

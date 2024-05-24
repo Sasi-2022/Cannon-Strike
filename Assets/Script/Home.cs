@@ -19,6 +19,6 @@ public class Home : MonoBehaviour
 
     void LoadScene()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("EntryScene");
     }
 }
