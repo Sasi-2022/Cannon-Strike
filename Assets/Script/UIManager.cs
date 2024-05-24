@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
     public void BallCount()
     {
         balls++;
-        counttext.text= $"{balls.ToString()}/:{ totalcount.ToString()}";
+        counttext.text= $"{balls.ToString()}/{ totalcount.ToString()}";
     }
 
     void OnclickBtn()
