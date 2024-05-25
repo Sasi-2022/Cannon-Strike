@@ -15,10 +15,13 @@ public class CannonController : MonoBehaviour
     private int currentProjectiles;
     public Text projectileCountText;
 
+    // Force to be applied to the projectile
+    public float shootForce = 10f;
+
     void Start()
     {
         currentProjectiles = maxProjectiles;
-      //  UpdateProjectileCountUI();
+        //  UpdateProjectileCountUI();
     }
 
     void Update()
@@ -27,24 +30,22 @@ public class CannonController : MonoBehaviour
         {
             FireProjectile();
         }
-
     }
 
     void FireProjectile()
     {
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        rb.velocity = transform.right * projectile.GetComponent<ProjectileController>().speed;
+
+        // Calculate the direction vector based on the world up vector
+        Vector2 shootDirection = Vector2.up;
+
+        // Apply the force in the direction of shootDirection
+        rb.AddForce(shootDirection * shootForce, ForceMode2D.Impulse);
 
         currentProjectiles--;
         text.Invoke();
-       // UpdateProjectileCountUI();
     }
-
-   /* void UpdateProjectileCountUI()
-    {
-        projectileCountText.text = currentProjectiles.ToString();
-    }*/
 
     void OnTriggerEnter2D(Collider2D other)
     {
