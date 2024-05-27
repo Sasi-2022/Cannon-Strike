@@ -1416,9 +1416,9 @@ MonoBehaviour:
   homeBtn: {fileID: 0}
   winningpanel: {fileID: 408699374}
   loseballs: {fileID: 1425587902}
-  star1: {fileID: 1425587905}
-  star2: {fileID: 1425587904}
-  star3: {fileID: 1425587903}
+  star1: {fileID: 1425587903}
+  star2: {fileID: 1425587905}
+  star3: {fileID: 1425587904}
 --- !u!4 &1731423810
 Transform:
   m_ObjectHideFlags: 0
