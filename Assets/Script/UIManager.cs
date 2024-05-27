@@ -81,7 +81,8 @@ public class UIManager : MonoBehaviour
         if (balls == totalcount)
         {
             winningpanel.SetActive(true);
-           var loseball = maxProjectiles-balls - currentProjectiles;
+            losspanel.SetActive(false);
+            var loseball = maxProjectiles-balls - currentProjectiles;
             loseballs.text = $"LoseBalls : {loseball.ToString()}";
         }
     }
@@ -91,6 +92,7 @@ public class UIManager : MonoBehaviour
         if (balls < totalcount && currentProjectiles == 0)
         {
             losspanel.SetActive(true);
+            winningpanel.SetActive(false);
         }
     }
 
