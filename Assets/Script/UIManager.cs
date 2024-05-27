@@ -36,12 +36,12 @@ public class UIManager : MonoBehaviour
         homeBtn.onClick.AddListener(OnclickBtn);
         currentProjectiles = maxProjectiles;
         UpdateProjectileCountUI();
-        WinningPanel();
+       
     }
 
     void Update()
     {
-        
+        WinningPanel();
     }
 
     public void BallCount()
@@ -65,7 +65,7 @@ public class UIManager : MonoBehaviour
     {
         if (balls == totalcount)
         {
-            winningpanel.SetActive(false);
+            winningpanel.SetActive(true);
         }
     }
 }
