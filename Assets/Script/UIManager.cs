@@ -106,7 +106,7 @@ public class UIManager : MonoBehaviour
             star2.SetActive(true);
             star3.SetActive(true);
         }
-        if (loseball < 10)
+        if(loseball < 10 && loseball != 0)
         {
             star1.SetActive(true);
             star2.SetActive(true);
