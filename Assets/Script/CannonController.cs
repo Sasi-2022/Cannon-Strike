@@ -22,6 +22,7 @@ public class CannonController : MonoBehaviour
     {
         currentProjectiles = maxProjectiles;
         //  UpdateProjectileCountUI();
+        //text.Invoke();
     }
 
     void Update()
@@ -29,6 +30,7 @@ public class CannonController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && currentProjectiles > 0)
         {
             FireProjectile();
+           // text.Invoke();
         }
     }
 
