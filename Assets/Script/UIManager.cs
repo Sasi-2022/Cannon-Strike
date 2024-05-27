@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public int currentProjectiles;
     public TextMeshProUGUI projectileCountText;
     public Button homeBtn;
+    public Button homeBtn1;
     public GameObject winningpanel;
     public GameObject losspanel;
     public TextMeshProUGUI loseballs;
@@ -38,6 +39,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+        homeBtn1.onClick.AddListener(OnclickHomeBtn);
         homeBtn.onClick.AddListener(OnclickBtn);
         currentProjectiles = maxProjectiles;
         projectileCountText.text = maxProjectiles.ToString();
@@ -59,6 +61,10 @@ public class UIManager : MonoBehaviour
     }
 
     void OnclickBtn()
+    {
+        SceneManager.LoadScene("Level Map Scene");
+    }
+    void OnclickHomeBtn()
     {
         SceneManager.LoadScene("Level Map Scene");
     }
