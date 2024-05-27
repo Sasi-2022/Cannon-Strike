@@ -28,7 +28,7 @@ public class ProjectileController : MonoBehaviour
             if (rb != null)
             {
                 Vector2 direction = (collision.transform.position - transform.position).normalized;
-                rb.AddForce(-direction * 30f, ForceMode2D.Impulse);
+                rb.AddForce(-direction * 45f, ForceMode2D.Impulse);
             }
         }
        else if (collision.collider.CompareTag("Collector"))

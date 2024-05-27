@@ -11,7 +11,7 @@ public class CannonController : MonoBehaviour
     public int maxProjectiles = 30;
     private bool iscollided = false;
     public static Action text;
-
+    public Transform shootPoint;
     private int currentProjectiles;
     public Text projectileCountText;
 
@@ -34,17 +34,105 @@ public class CannonController : MonoBehaviour
 
     void FireProjectile()
     {
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        if (Levels.instance.pickedlevels == "Level1")
+        {
 
-        // Calculate the direction vector based on the world up vector
-        Vector2 shootDirection = Vector2.up;
+            GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+            Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+            rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
+            currentProjectiles--;
+            text.Invoke();
 
-        // Apply the force in the direction of shootDirection
-        rb.AddForce(shootDirection * shootForce, ForceMode2D.Impulse);
+        }
+        if (Levels.instance.pickedlevels == "Level2")
+        {
 
-        currentProjectiles--;
-        text.Invoke();
+            GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+            Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+            rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
+            currentProjectiles--;
+            text.Invoke();
+
+        }
+        if (Levels.instance.pickedlevels == "Level3")
+        {
+
+            GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+            Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+            rb.AddForce(shootPoint.right * shootForce, ForceMode2D.Impulse);
+            currentProjectiles--;
+            text.Invoke();
+
+        }
+        if (Levels.instance.pickedlevels == "Level4")
+        {
+
+            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+            Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+
+            Vector2 shootDirection = Vector2.left;
+
+            rb.AddForce(shootDirection * shootForce, ForceMode2D.Impulse);
+
+            currentProjectiles--;
+            text.Invoke();
+
+        }
+        if (Levels.instance.pickedlevels == "Level5")
+        {
+
+            GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+            Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+            rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
+            currentProjectiles--;
+            text.Invoke();
+
+        }
+        if (Levels.instance.pickedlevels == "Level6")
+        {
+
+            GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+            Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+            rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
+            currentProjectiles--;
+            text.Invoke();
+
+        }
+        if (Levels.instance.pickedlevels == "Level7")
+        {
+
+            GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+            Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+            rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
+            currentProjectiles--;
+            text.Invoke();
+
+        }
+        if (Levels.instance.pickedlevels == "Level8")
+        {
+
+            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+            Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+
+            Vector2 shootDirection = Vector2.right;
+
+            rb.AddForce(shootDirection * shootForce, ForceMode2D.Impulse);
+
+            currentProjectiles--;
+            text.Invoke();
+
+        }
+        if (Levels.instance.pickedlevels == "Level9")
+        {
+
+            GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+            Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+            rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
+            currentProjectiles--;
+            text.Invoke();
+
+        }
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
