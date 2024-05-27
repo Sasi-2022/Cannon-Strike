@@ -1330,6 +1330,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Winning Panel
       objectReference: {fileID: 0}
+    - target: {fileID: 4203679465702708786, guid: c494bfe7e554c48f28a9a2c43e754592, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111253232222708071, guid: c494bfe7e554c48f28a9a2c43e754592, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776074105538627475, guid: c494bfe7e554c48f28a9a2c43e754592, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
