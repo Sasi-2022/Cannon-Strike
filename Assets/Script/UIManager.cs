@@ -51,6 +51,7 @@ public class UIManager : MonoBehaviour
     {
         WinningPanel();
         DisplayStar();
+        LossPanel();
     }
 
     public void BallCount()
