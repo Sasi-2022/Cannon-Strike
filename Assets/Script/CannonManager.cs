@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CannonManager : MonoBehaviour
 {
-    public static CannonManager instance;
     // public int id;
     // public LevelDataSO levelData;
     public GameObject cannonparent;
@@ -12,24 +11,13 @@ public class CannonManager : MonoBehaviour
     public GameObject cannon;
     
 
-    private void Awake()
-    {
-        {
-            if (instance == null)
-            {
-                DontDestroyOnLoad(gameObject);
-                instance = this;
-            }
-            else if (instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
-    }
-
     private void Start()
     {
         LoadCannon();
+    }
+    private void Update()
+    {
+      //  LoadCannon();
     }
 
     public void LoadCannon()

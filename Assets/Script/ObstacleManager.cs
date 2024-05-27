@@ -6,7 +6,6 @@ using System;
 
 public class ObstacleManager : MonoBehaviour
 {
-   public static ObstacleManager instance;
    // public int id;
    // public LevelDataSO levelData;
     public GameObject obstacleparent;
@@ -37,20 +36,7 @@ public class ObstacleManager : MonoBehaviour
           Levels.level4 -= LoadObtacle4;
       }*/
 
-    private void Awake()
-    {
-        {
-            if (instance == null)
-            {
-                DontDestroyOnLoad(gameObject);
-                instance = this;
-            }
-            else if (instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
-    }
+    
 
 
 
@@ -59,10 +45,9 @@ public class ObstacleManager : MonoBehaviour
         LoadObtacle();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+       // LoadObtacle();
     }
 
     public void LoadObtacle()
