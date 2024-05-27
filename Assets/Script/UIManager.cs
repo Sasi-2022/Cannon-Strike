@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-      //  homeBtn.onClick.AddListener(OnclickBtn);
+        homeBtn.onClick.AddListener(OnclickBtn);
         currentProjectiles = maxProjectiles;
         projectileCountText.text = maxProjectiles.ToString();
       //  UpdateProjectileCountUI();
@@ -74,7 +74,7 @@ public class UIManager : MonoBehaviour
         {
             winningpanel.SetActive(true);
            var loseball = maxProjectiles-balls - currentProjectiles;
-            loseballs.text = $"LoseBalls:{loseball.ToString()}";
+            loseballs.text = $"LoseBalls : {loseball.ToString()}";
         }
     }
 
@@ -100,4 +100,5 @@ public class UIManager : MonoBehaviour
             star3.SetActive(false);
         }
     }
+    
 }
