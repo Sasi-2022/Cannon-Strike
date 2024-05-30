@@ -105,7 +105,7 @@ public class CannonController : MonoBehaviour
 
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-            rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
+            rb.AddForce(shootPoint.right * shootForce, ForceMode2D.Impulse);
             currentProjectiles--;
             text.Invoke();
 
