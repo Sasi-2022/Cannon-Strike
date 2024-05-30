@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class CannonController : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class CannonController : MonoBehaviour
     public Transform shootPoint;
     private int currentProjectiles;
     public Text projectileCountText;
+    public Button homeBtn;
 
     // Force to be applied to the projectile
     public float shootForce = 10f;
@@ -64,7 +66,6 @@ public class CannonController : MonoBehaviour
             rb.AddForce(shootPoint.right * shootForce, ForceMode2D.Impulse);
             currentProjectiles--;
             text.Invoke();
-
         }
         if (Levels.instance.pickedlevels == "Level4")
         {
@@ -78,7 +79,6 @@ public class CannonController : MonoBehaviour
 
             currentProjectiles--;
             text.Invoke();
-
         }
         if (Levels.instance.pickedlevels == "Level5")
         {
@@ -88,7 +88,6 @@ public class CannonController : MonoBehaviour
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
             currentProjectiles--;
             text.Invoke();
-
         }
         if (Levels.instance.pickedlevels == "Level6")
         {
@@ -98,7 +97,6 @@ public class CannonController : MonoBehaviour
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
             currentProjectiles--;
             text.Invoke();
-
         }
         if (Levels.instance.pickedlevels == "Level7")
         {
@@ -108,7 +106,6 @@ public class CannonController : MonoBehaviour
             rb.AddForce(shootPoint.right * shootForce, ForceMode2D.Impulse);
             currentProjectiles--;
             text.Invoke();
-
         }
         if (Levels.instance.pickedlevels == "Level8")
         {
@@ -122,7 +119,6 @@ public class CannonController : MonoBehaviour
 
             currentProjectiles--;
             text.Invoke();
-
         }
         if (Levels.instance.pickedlevels == "Level9")
         {
@@ -132,16 +128,12 @@ public class CannonController : MonoBehaviour
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
             currentProjectiles--;
             text.Invoke();
-
         }
 
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    public void OnClickHomeBtn()
     {
-        if (other.CompareTag("Boundary"))
-        {
-            Destroy(gameObject); // Destroy the projectile
-        }
+        SceneManager.LoadScene("Level Map Scene");
     }
 }
