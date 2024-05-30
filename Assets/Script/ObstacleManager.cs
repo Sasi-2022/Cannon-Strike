@@ -75,6 +75,7 @@ public class ObstacleManager : MonoBehaviour
         if (Levels.instance.pickedlevels == "Level6")
         {
             Instantiate(obstacle6, obstacleparent.transform);
+            obstacleparent.transform.position = new Vector3(1.21f, 0.87f, 0);
         }
         if (Levels.instance.pickedlevels == "Level7")
         {
