@@ -85,7 +85,12 @@ public class UIManager : MonoBehaviour
             losspanel.SetActive(false);
             var loseball = maxProjectiles-balls - currentProjectiles;
             loseballs.text = $"LoseBalls : {loseball.ToString()}";
+            if (loseball < 0)
+            {
+                loseballs.text = $"LoseBalls : 0";
+            }
         }
+        
     }
 
     public void LossPanel()
