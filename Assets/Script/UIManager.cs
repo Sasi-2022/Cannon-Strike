@@ -39,18 +39,19 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+
         homeBtn1.onClick.AddListener(OnclickHomeBtn);
         homeBtn.onClick.AddListener(OnclickBtn);
         currentProjectiles = maxProjectiles;
         projectileCountText.text = maxProjectiles.ToString();
-      //  UpdateProjectileCountUI();
+        //  UpdateProjectileCountUI();
+       
 
     }
 
     void Update()
     {
         WinningPanel();
-        DisplayStar();
         LossPanel();
     }
 
@@ -84,6 +85,25 @@ public class UIManager : MonoBehaviour
             losspanel.SetActive(false);
             var loseball = maxProjectiles-balls - currentProjectiles;
             loseballs.text = $"LoseBalls : {loseball.ToString()}";
+            if (loseball == 0)
+            {
+                star1.SetActive(true);
+                star2.SetActive(true);
+                star3.SetActive(true);
+            }
+           else if (loseball < 10 && loseball != 0)
+            {
+                star1.SetActive(true);
+                star2.SetActive(true);
+                star3.SetActive(false);
+            }
+           else if (loseball > 10)
+            {
+                star1.SetActive(false);
+                star2.SetActive(false);
+                star3.SetActive(false);
+            }
+
         }
     }
 
@@ -97,7 +117,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void DisplayStar()
+   /* public void DisplayStar()
     {
         var loseball = maxProjectiles - balls - currentProjectiles;
         if (loseball== 0)
@@ -118,6 +138,6 @@ public class UIManager : MonoBehaviour
             star2.SetActive(false);
             star3.SetActive(false);
         }
-    }
+    }*/
     
 }

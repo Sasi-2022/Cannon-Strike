@@ -15,7 +15,6 @@ public class CannonController : MonoBehaviour
     public Transform shootPoint;
     private int currentProjectiles;
     public Text projectileCountText;
-    public Button homeBtn;
 
     // Force to be applied to the projectile
     public float shootForce = 10f;
@@ -44,7 +43,7 @@ public class CannonController : MonoBehaviour
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
-            currentProjectiles--;
+            //currentProjectiles--;
             text.Invoke();
 
         }
@@ -54,7 +53,7 @@ public class CannonController : MonoBehaviour
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
-            currentProjectiles--;
+           // currentProjectiles--;
             text.Invoke();
 
         }
@@ -64,7 +63,7 @@ public class CannonController : MonoBehaviour
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.right * shootForce, ForceMode2D.Impulse);
-            currentProjectiles--;
+            //currentProjectiles--;
             text.Invoke();
         }
         if (Levels.instance.pickedlevels == "Level4")
@@ -77,7 +76,7 @@ public class CannonController : MonoBehaviour
 
             rb.AddForce(shootDirection * shootForce, ForceMode2D.Impulse);
 
-            currentProjectiles--;
+            //currentProjectiles--;
             text.Invoke();
         }
         if (Levels.instance.pickedlevels == "Level5")
@@ -86,7 +85,7 @@ public class CannonController : MonoBehaviour
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
-            currentProjectiles--;
+            //currentProjectiles--;
             text.Invoke();
         }
         if (Levels.instance.pickedlevels == "Level6")
@@ -95,7 +94,7 @@ public class CannonController : MonoBehaviour
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
-            currentProjectiles--;
+           // currentProjectiles--;
             text.Invoke();
         }
         if (Levels.instance.pickedlevels == "Level7")
@@ -104,7 +103,7 @@ public class CannonController : MonoBehaviour
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.right * shootForce, ForceMode2D.Impulse);
-            currentProjectiles--;
+           // currentProjectiles--;
             text.Invoke();
         }
         if (Levels.instance.pickedlevels == "Level8")
@@ -117,7 +116,7 @@ public class CannonController : MonoBehaviour
 
             rb.AddForce(shootDirection * shootForce, ForceMode2D.Impulse);
 
-            currentProjectiles--;
+            //currentProjectiles--;
             text.Invoke();
         }
         if (Levels.instance.pickedlevels == "Level9")
@@ -126,14 +125,11 @@ public class CannonController : MonoBehaviour
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
-            currentProjectiles--;
+           // currentProjectiles--;
             text.Invoke();
         }
 
     }
 
-    public void OnClickHomeBtn()
-    {
-        SceneManager.LoadScene("Level Map Scene");
-    }
+   
 }
