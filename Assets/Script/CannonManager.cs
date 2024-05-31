@@ -46,15 +46,15 @@ public class CannonManager : MonoBehaviour
         if (Levels.instance.pickedlevels == "Level3")
         {
             Instantiate(cannon, cannonparent.transform);
-            cannonparent.transform.position = new Vector3(0.5f, 3.23f, 0);
-            cannonparent.transform.Rotate(0, 0, 21);
+            cannonparent.transform.position = new Vector3(1.1f, 3.23f, 0);
+            cannonparent.transform.Rotate(0, 0, -21);
             levelTxt.text = "LEVEL : " + 3;
 
         }
         if (Levels.instance.pickedlevels == "Level4")
         {
             Instantiate(cannon, cannonparent.transform);
-            cannonparent.transform.position = new Vector3(0.5f, 1.52f, 0);
+            cannonparent.transform.position = new Vector3(0.3f, 2.5f, 0);
             cannonparent.transform.Rotate(0, 0, -39.29f);
             levelTxt.text = "LEVEL : " + 4;
 
