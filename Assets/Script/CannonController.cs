@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using UnityEngine.SceneManagement;
 
 public class CannonController : MonoBehaviour
 {
@@ -14,25 +13,29 @@ public class CannonController : MonoBehaviour
     public static Action text;
     public Transform shootPoint;
     private int currentProjectiles;
-    public Text projectileCountText;
+   // public Text projectileCountText;
 
     // Force to be applied to the projectile
     public float shootForce = 10f;
+
+    public Button cannon;
 
     void Start()
     {
         currentProjectiles = maxProjectiles;
         //  UpdateProjectileCountUI();
         //text.Invoke();
+        cannon.onClick.AddListener(FireProjectile);
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && currentProjectiles > 0)
+      /*  if (Input.GetMouseButtonDown(0) && currentProjectiles > 0)
         {
             FireProjectile();
            // text.Invoke();
-        }
+        }*/
+
     }
 
     void FireProjectile()
@@ -43,7 +46,7 @@ public class CannonController : MonoBehaviour
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
-            //currentProjectiles--;
+            currentProjectiles--;
             text.Invoke();
 
         }
@@ -53,7 +56,7 @@ public class CannonController : MonoBehaviour
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
-           // currentProjectiles--;
+            currentProjectiles--;
             text.Invoke();
 
         }
@@ -63,8 +66,9 @@ public class CannonController : MonoBehaviour
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.right * shootForce, ForceMode2D.Impulse);
-            //currentProjectiles--;
+            currentProjectiles--;
             text.Invoke();
+
         }
         if (Levels.instance.pickedlevels == "Level4")
         {
@@ -76,8 +80,9 @@ public class CannonController : MonoBehaviour
 
             rb.AddForce(shootDirection * shootForce, ForceMode2D.Impulse);
 
-            //currentProjectiles--;
+            currentProjectiles--;
             text.Invoke();
+
         }
         if (Levels.instance.pickedlevels == "Level5")
         {
@@ -85,8 +90,9 @@ public class CannonController : MonoBehaviour
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
-            //currentProjectiles--;
+            currentProjectiles--;
             text.Invoke();
+
         }
         if (Levels.instance.pickedlevels == "Level6")
         {
@@ -94,8 +100,9 @@ public class CannonController : MonoBehaviour
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
-           // currentProjectiles--;
+            currentProjectiles--;
             text.Invoke();
+
         }
         if (Levels.instance.pickedlevels == "Level7")
         {
@@ -103,8 +110,9 @@ public class CannonController : MonoBehaviour
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.right * shootForce, ForceMode2D.Impulse);
-           // currentProjectiles--;
+            currentProjectiles--;
             text.Invoke();
+
         }
         if (Levels.instance.pickedlevels == "Level8")
         {
@@ -116,8 +124,9 @@ public class CannonController : MonoBehaviour
 
             rb.AddForce(shootDirection * shootForce, ForceMode2D.Impulse);
 
-            //currentProjectiles--;
+            currentProjectiles--;
             text.Invoke();
+
         }
         if (Levels.instance.pickedlevels == "Level9")
         {
@@ -125,11 +134,18 @@ public class CannonController : MonoBehaviour
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
-           // currentProjectiles--;
+            currentProjectiles--;
             text.Invoke();
+
         }
 
     }
 
-   
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Boundary"))
+        {
+            Destroy(gameObject); // Destroy the projectile
+        }
+    }
 }
