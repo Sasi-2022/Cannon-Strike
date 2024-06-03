@@ -46,15 +46,15 @@ public class CannonManager : MonoBehaviour
         if (Levels.instance.pickedlevels == "Level3")
         {
             Instantiate(cannon, cannonparent.transform);
-            cannonparent.transform.position = new Vector3(1.1f, 3.23f, 0);
-            cannonparent.transform.Rotate(0, 0, -21);
+            cannonparent.transform.position = new Vector3(0.01f, 3.23f, 0);
+            cannonparent.transform.Rotate(0, 0, 32);
             levelTxt.text = "LEVEL : " + 3;
 
         }
         if (Levels.instance.pickedlevels == "Level4")
         {
             Instantiate(cannon, cannonparent.transform);
-            cannonparent.transform.position = new Vector3(0.3f, 2.5f, 0);
+            cannonparent.transform.position = new Vector3(-0.1f, 1.8f, 0);
             cannonparent.transform.Rotate(0, 0, -39.29f);
             levelTxt.text = "LEVEL : " + 4;
 
@@ -62,7 +62,7 @@ public class CannonManager : MonoBehaviour
         if (Levels.instance.pickedlevels == "Level5")
         {
             Instantiate(cannon, cannonparent.transform);
-            cannonparent.transform.position = new Vector3(0.5f, 2.11f, 0);
+            cannonparent.transform.position = new Vector3(0.1f, 2.11f, 0);
             levelTxt.text = "LEVEL : " + 5;
 
         }
@@ -84,15 +84,15 @@ public class CannonManager : MonoBehaviour
         if (Levels.instance.pickedlevels == "Level8")
         {
             Instantiate(cannon, cannonparent.transform);
-            cannonparent.transform.position = new Vector3(0.5f, 2.67f, 0);
-           // cannonparent.transform.Rotate(0, 0, 75.27f);
+            cannonparent.transform.position = new Vector3(-1.3f, 1f, 0);
+            cannonparent.transform.Rotate(0, 0, 90f);
             levelTxt.text = "LEVEL : " + 8;
 
         }
         if (Levels.instance.pickedlevels == "Level9")
         {
             Instantiate(cannon, cannonparent.transform);
-            cannonparent.transform.position = new Vector3(0.5f, 2.5f, 0);
+            cannonparent.transform.position = new Vector3(0.1f, 1.5f, 0);
             levelTxt.text = "LEVEL : " + 9;
 
         }
