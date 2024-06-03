@@ -46,8 +46,8 @@ public class CannonManager : MonoBehaviour
         if (Levels.instance.pickedlevels == "Level3")
         {
             Instantiate(cannon, cannonparent.transform);
-            cannonparent.transform.position = new Vector3(0.01f, 3.23f, 0);
-            cannonparent.transform.Rotate(0, 0, 32);
+            cannonparent.transform.position = new Vector3(-0.1f, 3.23f, 0);
+            cannonparent.transform.Rotate(0, 0, 50);
             levelTxt.text = "LEVEL : " + 3;
 
         }
