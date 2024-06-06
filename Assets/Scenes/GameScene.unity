@@ -1581,9 +1581,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2155094948523159046, guid: c494bfe7e554c48f28a9a2c43e754592, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 487.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2155094948523159046, guid: c494bfe7e554c48f28a9a2c43e754592, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 256.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2679365260739593780, guid: c494bfe7e554c48f28a9a2c43e754592, type: 3}
       propertyPath: m_Name
       value: Winning Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665679050189598314, guid: c494bfe7e554c48f28a9a2c43e754592, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 648.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1904,7 +1916,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.05882353, g: 0.42352942, b: 0.3137255, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2469,7 +2481,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 60.8, y: -1131.7}
+  m_AnchoredPosition: {x: 60.8, y: -1144.75}
   m_SizeDelta: {x: 400, y: 142.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1836904054
@@ -2501,8 +2513,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4283460623
+  m_fontColor: {r: 0.05807228, g: 0.4245283, b: 0.31253535, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
