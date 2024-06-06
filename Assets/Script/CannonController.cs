@@ -20,11 +20,16 @@ public class CannonController : MonoBehaviour
 
     public Button cannon;
 
+    private SpriteRenderer spriteRenderer;
+
+    public Sprite[] balls;
+
     void Start()
     {
         currentProjectiles = maxProjectiles;
         //  UpdateProjectileCountUI();
         //text.Invoke();
+        spriteRenderer = projectilePrefab.GetComponent<SpriteRenderer>();
         cannon.onClick.AddListener(FireProjectile);
     }
 
@@ -42,17 +47,19 @@ public class CannonController : MonoBehaviour
     {
         if (Levels.instance.pickedlevels == "Level1")
         {
-
+            spriteRenderer.sprite = balls[0];
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
             currentProjectiles--;
             text.Invoke();
 
+            
+            
         }
         if (Levels.instance.pickedlevels == "Level2")
         {
-
+            spriteRenderer.sprite = balls[1];
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
@@ -62,7 +69,7 @@ public class CannonController : MonoBehaviour
         }
         if (Levels.instance.pickedlevels == "Level3")
         {
-
+            spriteRenderer.sprite = balls[2];
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.right * shootForce, ForceMode2D.Impulse);
@@ -72,7 +79,7 @@ public class CannonController : MonoBehaviour
         }
         if (Levels.instance.pickedlevels == "Level4")
         {
-
+            spriteRenderer.sprite = balls[3];
             GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
@@ -86,7 +93,7 @@ public class CannonController : MonoBehaviour
         }
         if (Levels.instance.pickedlevels == "Level5")
         {
-
+            spriteRenderer.sprite = balls[4];
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
@@ -96,7 +103,7 @@ public class CannonController : MonoBehaviour
         }
         if (Levels.instance.pickedlevels == "Level6")
         {
-
+            spriteRenderer.sprite = balls[5];
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
@@ -106,7 +113,7 @@ public class CannonController : MonoBehaviour
         }
         if (Levels.instance.pickedlevels == "Level7")
         {
-
+            spriteRenderer.sprite = balls[6];
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.right * shootForce, ForceMode2D.Impulse);
@@ -116,7 +123,7 @@ public class CannonController : MonoBehaviour
         }
         if (Levels.instance.pickedlevels == "Level8")
         {
-
+            spriteRenderer.sprite = balls[7];
             GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
@@ -130,7 +137,7 @@ public class CannonController : MonoBehaviour
         }
         if (Levels.instance.pickedlevels == "Level9")
         {
-
+            spriteRenderer.sprite = balls[8];
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);

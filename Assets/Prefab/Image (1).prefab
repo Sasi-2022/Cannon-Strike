@@ -176,6 +176,17 @@ MonoBehaviour:
   shootPoint: {fileID: 4037640180205101008}
   shootForce: 10
   cannon: {fileID: 2724045340347824504}
+  balls:
+  - {fileID: 21300000, guid: 1291e7774a9e1432d9af7d93247060fa, type: 3}
+  - {fileID: 21300000, guid: ec936ed1afa764b669af0f67c989dd35, type: 3}
+  - {fileID: 21300000, guid: 38a9bc0e6e2054ef4a9eb4a21ed71753, type: 3}
+  - {fileID: 21300000, guid: cda85287f45e3436ba389d6f7c754462, type: 3}
+  - {fileID: 21300000, guid: 1548a3ebb08844b67886226993bd4c74, type: 3}
+  - {fileID: 21300000, guid: c58b25cc8e9ee45829d9819520c18140, type: 3}
+  - {fileID: 21300000, guid: 64553f22e910a4315bcb334d8ba70b63, type: 3}
+  - {fileID: 21300000, guid: 7fdb277a9ba2d4e798f9c2005fae5f46, type: 3}
+  - {fileID: 21300000, guid: d90f70137178b459bb38444a0b019e7e, type: 3}
+  - {fileID: 21300000, guid: 64553f22e910a4315bcb334d8ba70b63, type: 3}
 --- !u!50 &8653321840068776300
 Rigidbody2D:
   serializedVersion: 4
