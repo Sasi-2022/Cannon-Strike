@@ -13,6 +13,7 @@ public class CannonManager : MonoBehaviour
     public GameObject cannon;
     public Text levelTxt;
     public Button homeBtn;
+    public GameObject[] levelImage;
 
 
 
@@ -33,14 +34,14 @@ public class CannonManager : MonoBehaviour
         {
             Instantiate(cannon, cannonparent.transform);
             //cannonparent.transform.position = new Vector3(53f, 2.8f, 0);
-            levelTxt.text = "LEVEL : " + 1;
-
+            //levelTxt.text = "LEVEL : " + 1;
+            levelImage[0].SetActive(true);
         }
         if (Levels.instance.pickedlevels == "Level2")
         {
             Instantiate(cannon, cannonparent.transform);
-           // cannonparent.transform.position = new Vector3(1.43f, 2.8f, 0);
-            levelTxt.text = "LEVEL : " + 2;
+            // cannonparent.transform.position = new Vector3(1.43f, 2.8f, 0);
+            levelImage[1].SetActive(true);
 
         }
         if (Levels.instance.pickedlevels == "Level3")
@@ -48,7 +49,7 @@ public class CannonManager : MonoBehaviour
             Instantiate(cannon, cannonparent.transform);
             cannonparent.transform.position = new Vector3(-0.1f, 3.23f, 0);
             cannonparent.transform.Rotate(0, 0, 50);
-            levelTxt.text = "LEVEL : " + 3;
+            levelImage[2].SetActive(true);
 
         }
         if (Levels.instance.pickedlevels == "Level4")
@@ -56,29 +57,29 @@ public class CannonManager : MonoBehaviour
             Instantiate(cannon, cannonparent.transform);
             cannonparent.transform.position = new Vector3(-0.1f, 1.8f, 0);
             cannonparent.transform.Rotate(0, 0, -39.29f);
-            levelTxt.text = "LEVEL : " + 4;
+            levelImage[3].SetActive(true);
 
         }
         if (Levels.instance.pickedlevels == "Level5")
         {
             Instantiate(cannon, cannonparent.transform);
             cannonparent.transform.position = new Vector3(0.1f, 2.11f, 0);
-            levelTxt.text = "LEVEL : " + 5;
+            levelImage[4].SetActive(true);
 
         }
         if (Levels.instance.pickedlevels == "Level6")
         {
             Instantiate(cannon, cannonparent.transform);
             cannonparent.transform.position = new Vector3(0.2f, 3.0f, 0);
-            levelTxt.text = "LEVEL : " + 6;
+            levelImage[5].SetActive(true);
 
         }
         if (Levels.instance.pickedlevels == "Level7")
         {
             Instantiate(cannon, cannonparent.transform);
             cannonparent.transform.position = new Vector3(-0.1f, 3.47f, 0);
-           // cannonparent.transform.Rotate(0, 0, 35.99f);
-            levelTxt.text = "LEVEL : " + 7;
+            // cannonparent.transform.Rotate(0, 0, 35.99f);
+            levelImage[6].SetActive(true);
 
         }
         if (Levels.instance.pickedlevels == "Level8")
@@ -86,14 +87,14 @@ public class CannonManager : MonoBehaviour
             Instantiate(cannon, cannonparent.transform);
             cannonparent.transform.position = new Vector3(-1.3f, 1f, 0);
             cannonparent.transform.Rotate(0, 0, 90f);
-            levelTxt.text = "LEVEL : " + 8;
+            levelImage[7].SetActive(true);
 
         }
         if (Levels.instance.pickedlevels == "Level9")
         {
             Instantiate(cannon, cannonparent.transform);
             cannonparent.transform.position = new Vector3(0.1f, 1.5f, 0);
-            levelTxt.text = "LEVEL : " + 9;
+            levelImage[8].SetActive(true);
 
         }
 
