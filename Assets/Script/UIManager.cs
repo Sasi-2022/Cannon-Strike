@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     public GameObject winningpanel;
     public GameObject losspanel;
     public TextMeshProUGUI loseballs;
+    public TextMeshProUGUI loseballs1;
     public GameObject star1;
     public GameObject star2;
     public GameObject star3;
@@ -113,6 +114,8 @@ public class UIManager : MonoBehaviour
         {
             losspanel.SetActive(true);
             winningpanel.SetActive(false);
+            var loseball = maxProjectiles - balls - currentProjectiles;
+            loseballs1.text = $"LoseBalls : {loseball.ToString()}";
         }
     }
 
