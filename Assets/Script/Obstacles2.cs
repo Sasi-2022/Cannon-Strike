@@ -19,6 +19,6 @@ public class Obstacles2 : MonoBehaviour
         float xPos = transform.position.x;
         float zPos = transform.position.z + speed * Time.deltaTime;
 
-        transform.position = new Vector3(xPos, yPos, zPos);
+       // transform.position = new Vector3(xPos, yPos, zPos);
     }
 }

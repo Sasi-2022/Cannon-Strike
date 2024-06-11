@@ -16,6 +16,7 @@ public class ProjectileController : MonoBehaviour
         {
            // CollectBall();
             ballcollection.Invoke();
+            StartCoroutine(BallBounce());
         }
     }
 
@@ -33,8 +34,9 @@ public class ProjectileController : MonoBehaviour
         }
        else if (collision.collider.CompareTag("Collector"))
        {
-            PhysicsMaterial2D newMaterial = new PhysicsMaterial2D();
-            newMaterial.bounciness = 0f;
+            // PhysicsMaterial2D newMaterial = new PhysicsMaterial2D();
+            //  newMaterial.bounciness = 0f;
+
             Debug.Log("b---");
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             
@@ -55,6 +57,20 @@ public class ProjectileController : MonoBehaviour
     public bool IsCollected()
     {
         return collected;
+    }
+
+    private IEnumerator BallBounce()
+    {
+        //PhysicsMaterial2D newMaterial = new PhysicsMaterial2D();
+        // newMaterial.bounciness = 0.1f;
+
+        transform.Rotate(Vector3.up, 5 * Time.deltaTime);
+
+        yield return new WaitForSeconds(0.1f);
+
+        //newMaterial.bounciness = 0f;
+
+        transform.Rotate(Vector3.up * Time.deltaTime);
     }
 
 }

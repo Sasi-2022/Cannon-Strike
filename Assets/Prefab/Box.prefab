@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 1111219989664208858}
   m_Layer: 0
   m_Name: Box
-  m_TagString: Untagged
+  m_TagString: Collector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 847358457580586408}
   m_Layer: 0
   m_Name: GameObject (1)
-  m_TagString: Untagged
+  m_TagString: Collector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 5931585332179818801}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Collector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -961,7 +961,7 @@ GameObject:
   - component: {fileID: 6127923686359483624}
   m_Layer: 0
   m_Name: GameObject (3)
-  m_TagString: Untagged
+  m_TagString: Collector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1390,7 +1390,7 @@ GameObject:
   - component: {fileID: 2420983360026824453}
   m_Layer: 0
   m_Name: GameObject (2)
-  m_TagString: Untagged
+  m_TagString: Collector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
