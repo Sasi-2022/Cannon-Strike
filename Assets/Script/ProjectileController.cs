@@ -61,14 +61,14 @@ public class ProjectileController : MonoBehaviour
 
     private IEnumerator BallBounce()
     {
-        //PhysicsMaterial2D newMaterial = new PhysicsMaterial2D();
-        // newMaterial.bounciness = 0.1f;
+        PhysicsMaterial2D newMaterial = new PhysicsMaterial2D();
+         newMaterial.bounciness = 0.8f;
 
         transform.Rotate(Vector3.up, 5 * Time.deltaTime);
 
         yield return new WaitForSeconds(0.1f);
 
-        //newMaterial.bounciness = 0f;
+        newMaterial.bounciness = 0f;
 
         transform.Rotate(Vector3.up * Time.deltaTime);
     }
