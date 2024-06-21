@@ -8,6 +8,7 @@ public class ProjectileController : MonoBehaviour
     public float speed = 1f;
     private bool collected = false;
     public static Action ballcollection;
+    public static Action lossballCount;
 
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -17,6 +18,10 @@ public class ProjectileController : MonoBehaviour
            // CollectBall();
             ballcollection.Invoke();
             StartCoroutine(BallBounce());
+        }
+        if (other.CompareTag("LossBalls"))
+        {
+            lossballCount.Invoke();
         }
     }
 

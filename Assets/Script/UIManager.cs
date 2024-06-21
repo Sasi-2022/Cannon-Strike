@@ -31,12 +31,14 @@ public class UIManager : MonoBehaviour
     {
         ProjectileController.ballcollection += BallCount;
         CannonController.text += UpdateProjectileCountUI;
+        ProjectileController.lossballCount += LossBallCount;
     }
 
     private void OnDisable()
     {
         ProjectileController.ballcollection -= BallCount;
         CannonController.text -= UpdateProjectileCountUI;
+        ProjectileController.lossballCount -= LossBallCount;
     }
 
     void Start()
@@ -145,14 +147,13 @@ public class UIManager : MonoBehaviour
      }*/
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void LossBallCount()
     {
-        if (collision.collider.CompareTag("LossBalls"))
-        {
+        
             lossBalls++;
             loseballs.text = $"LoseBalls : {lossBalls.ToString()}";
             loseballs1.text = $"LoseBalls : {lossBalls.ToString()}";
 
-        }
+        
     }
 }
