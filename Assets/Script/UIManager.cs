@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI counttext;
     public int totalcount;
     public int balls;
+    public int lossBalls;
     public int maxProjectiles = 30;
     public int currentProjectiles;
     public TextMeshProUGUI projectileCountText;
@@ -24,7 +25,7 @@ public class UIManager : MonoBehaviour
     public GameObject star1;
     public GameObject star2;
     public GameObject star3;
-    
+
 
     private void OnEnable()
     {
@@ -46,7 +47,7 @@ public class UIManager : MonoBehaviour
         currentProjectiles = maxProjectiles;
         projectileCountText.text = maxProjectiles.ToString();
         //  UpdateProjectileCountUI();
-       
+
 
     }
 
@@ -59,8 +60,8 @@ public class UIManager : MonoBehaviour
     public void BallCount()
     {
         Debug.Log("count");
-        balls++; 
-        counttext.text= $"{balls.ToString()}/{ totalcount.ToString()}";
+        balls++;
+        counttext.text = $"{balls.ToString()}/{ totalcount.ToString()}";
     }
 
     void OnclickBtn()
@@ -84,21 +85,21 @@ public class UIManager : MonoBehaviour
         {
             winningpanel.SetActive(true);
             losspanel.SetActive(false);
-            var loseball = maxProjectiles-balls - currentProjectiles;
-            loseballs.text = $"LoseBalls : {loseball.ToString()}";
-            if (loseball == 0)
+            //var losball = maxProjectiles - balls - currentProjectiles;
+           // loseballs.text = $"LoseBalls : {loseball.ToString()}";
+            if (lossBalls == 0)
             {
                 star1.SetActive(true);
                 star2.SetActive(true);
                 star3.SetActive(true);
             }
-           else if (loseball < 10 && loseball != 0)
+            else if (lossBalls < 10 && lossBalls != 0)
             {
                 star1.SetActive(true);
                 star2.SetActive(true);
                 star3.SetActive(false);
             }
-           else if (loseball > 10)
+            else if (lossBalls > 10 || lossBalls == 10)
             {
                 star1.SetActive(false);
                 star2.SetActive(false);
@@ -114,33 +115,44 @@ public class UIManager : MonoBehaviour
         {
             losspanel.SetActive(true);
             winningpanel.SetActive(false);
-            var loseball = maxProjectiles - balls - currentProjectiles;
-            loseballs1.text = $"LoseBalls : {loseball.ToString()}";
+           // var loseball = maxProjectiles - balls - currentProjectiles;
+           // loseballs1.text = $"LoseBalls : {loseball.ToString()}";
         }
     }
 
 
-   /* public void DisplayStar()
+    /* public void DisplayStar()
+     {
+         var loseball = maxProjectiles - balls - currentProjectiles;
+         if (loseball== 0)
+         {
+             star1.SetActive(true);
+             star2.SetActive(true);
+             star3.SetActive(true);
+         }
+         if(loseball < 10 && loseball != 0)
+         {
+             star1.SetActive(true);
+             star2.SetActive(true);
+             star3.SetActive(false);
+         }
+         if (loseball >10)
+         {
+             star1.SetActive(false);
+             star2.SetActive(false);
+             star3.SetActive(false);
+         }
+     }*/
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        var loseball = maxProjectiles - balls - currentProjectiles;
-        if (loseball== 0)
+        if (collision.collider.CompareTag("LossBalls"))
         {
-            star1.SetActive(true);
-            star2.SetActive(true);
-            star3.SetActive(true);
+            lossBalls++;
+            loseballs.text = $"LoseBalls : {lossBalls.ToString()}";
+            loseballs1.text = $"LoseBalls : {lossBalls.ToString()}";
+
         }
-        if(loseball < 10 && loseball != 0)
-        {
-            star1.SetActive(true);
-            star2.SetActive(true);
-            star3.SetActive(false);
-        }
-        if (loseball >10)
-        {
-            star1.SetActive(false);
-            star2.SetActive(false);
-            star3.SetActive(false);
-        }
-    }*/
-    
+    }
 }
