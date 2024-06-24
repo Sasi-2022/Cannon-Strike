@@ -68,11 +68,14 @@ public class UIManager : MonoBehaviour
 
     void OnclickBtn()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Level Map Scene");
     }
     void OnclickHomeBtn()
     {
         SceneManager.LoadScene("Level Map Scene");
+        Debug.Log("stop");
+        //Time.timeScale = 1f;
     }
 
     void UpdateProjectileCountUI()
@@ -85,6 +88,7 @@ public class UIManager : MonoBehaviour
     {
         if (balls == totalcount)
         {
+            Time.timeScale = 0f;
             winningpanel.SetActive(true);
             losspanel.SetActive(false);
             //var losball = maxProjectiles - balls - currentProjectiles;
@@ -115,6 +119,7 @@ public class UIManager : MonoBehaviour
     {
         if (balls < totalcount && currentProjectiles == 0)
         {
+            Time.timeScale = 0f;
             losspanel.SetActive(true);
             winningpanel.SetActive(false);
            // var loseball = maxProjectiles - balls - currentProjectiles;
@@ -149,11 +154,8 @@ public class UIManager : MonoBehaviour
 
     public void LossBallCount()
     {
-        
-            lossBalls++;
-            loseballs.text = $"LoseBalls : {lossBalls.ToString()}";
-            loseballs1.text = $"LoseBalls : {lossBalls.ToString()}";
-
-        
+        lossBalls++;
+        loseballs.text = $"LoseBalls : {lossBalls.ToString()}";
+        loseballs1.text = $"LoseBalls : {lossBalls.ToString()}";
     }
 }

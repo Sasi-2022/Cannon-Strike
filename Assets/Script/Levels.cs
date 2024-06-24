@@ -29,6 +29,7 @@ public class Levels : MonoBehaviour
 
     public void btn_level1()
     {
+        Time.timeScale = 1f;
         pickedlevels = "Level1";
         SceneManager.LoadScene(2);
        //level1.Invoke();
@@ -36,6 +37,7 @@ public class Levels : MonoBehaviour
 
     public void btn_level2()
     {
+        Time.timeScale = 1f;
         pickedlevels = "Level2";
         SceneManager.LoadScene(2);
        // level2.Invoke();
@@ -43,6 +45,7 @@ public class Levels : MonoBehaviour
 
     public void btn_level3()
     {
+        Time.timeScale = 1f;
         pickedlevels = "Level3";
         SceneManager.LoadScene(2);
         //level3.Invoke();
@@ -50,6 +53,7 @@ public class Levels : MonoBehaviour
 
     public void btn_level4()
     {
+        Time.timeScale = 1f;
         pickedlevels = "Level4";
         SceneManager.LoadScene(2);
         //level4.Invoke();
@@ -57,6 +61,7 @@ public class Levels : MonoBehaviour
 
     public void btn_level5()
     {
+        Time.timeScale = 1f;
         pickedlevels = "Level5";
         SceneManager.LoadScene(2);
         //level4.Invoke();
@@ -64,6 +69,7 @@ public class Levels : MonoBehaviour
 
     public void btn_level6()
     {
+        Time.timeScale = 1f;
         pickedlevels = "Level6";
         SceneManager.LoadScene(2);
         //level4.Invoke();
@@ -71,6 +77,7 @@ public class Levels : MonoBehaviour
 
     public void btn_level7()
     {
+        Time.timeScale = 1f;
         pickedlevels = "Level7";
         SceneManager.LoadScene(2);
         //level4.Invoke();
@@ -78,12 +85,14 @@ public class Levels : MonoBehaviour
 
     public void btn_level8()
     {
+        Time.timeScale = 1f;
         pickedlevels = "Level8";
         SceneManager.LoadScene(2);
         //level4.Invoke();
     }
     public void btn_level9()
     {
+        Time.timeScale = 1f;
         pickedlevels = "Level9";
         SceneManager.LoadScene(2);
         //level4.Invoke();
