@@ -17,5 +17,7 @@ public class Level
     public float position;
     public float rotation;
     public GameObject obstacle;
-    
+    public GameObject cannon;
+    public bool isfinish;
+
 }

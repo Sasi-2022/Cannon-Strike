@@ -19,6 +19,6 @@ public class PlayButton : MonoBehaviour
 
     void LoadScene()
     {
-        SceneManager.LoadScene("Level Map Scene");
+        SceneManager.LoadScene(2);
     }
 }

@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-
+    public static UIManager instance;
     public TextMeshProUGUI counttext;
     public int totalcount;
     public int balls;
@@ -26,6 +26,14 @@ public class UIManager : MonoBehaviour
     public GameObject star2;
     public GameObject star3;
 
+    public LevelDataSO levelDataSO;
+
+    public bool iswin;
+
+    public void Awake()
+    {
+        instance = this;
+    }
 
     private void OnEnable()
     {
@@ -56,7 +64,11 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         WinningPanel();
-        LossPanel();
+        StartCoroutine(LossPanel());
+        if (iswin == true)
+        {
+            GameplayController.instance.currentlevel++;
+        }
     }
 
     public void BallCount()
@@ -69,11 +81,11 @@ public class UIManager : MonoBehaviour
     void OnclickBtn()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Level Map Scene");
+        SceneManager.LoadScene(2);
     }
     void OnclickHomeBtn()
     {
-        SceneManager.LoadScene("Level Map Scene");
+        SceneManager.LoadScene(2);
         Debug.Log("stop");
         //Time.timeScale = 1f;
     }
@@ -91,8 +103,11 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 0f;
             winningpanel.SetActive(true);
             losspanel.SetActive(false);
+            iswin = true;
+           
+
             //var losball = maxProjectiles - balls - currentProjectiles;
-           // loseballs.text = $"LoseBalls : {loseball.ToString()}";
+            // loseballs.text = $"LoseBalls : {loseball.ToString()}";
             if (lossBalls == 0)
             {
                 star1.SetActive(true);
@@ -115,11 +130,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void LossPanel()
+    public IEnumerator LossPanel()
     {
         if (balls < totalcount && currentProjectiles == 0)
         {
-            Time.timeScale = 0f;
+           // Time.timeScale = 0f;
+            yield return new WaitForSeconds(1.2f);
             losspanel.SetActive(true);
             winningpanel.SetActive(false);
            // var loseball = maxProjectiles - balls - currentProjectiles;
