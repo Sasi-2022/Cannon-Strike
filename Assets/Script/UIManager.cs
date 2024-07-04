@@ -67,7 +67,7 @@ public class UIManager : MonoBehaviour
         StartCoroutine(LossPanel());
         if (iswin == true)
         {
-            GameplayController.instance.currentlevel++;
+            
         }
     }
 
@@ -76,6 +76,10 @@ public class UIManager : MonoBehaviour
         Debug.Log("count");
         balls++;
         counttext.text = $"{balls.ToString()}/{ totalcount.ToString()}";
+        if (balls == 20)
+        {
+            GameplayController.instance.currentlevel++;
+        }
     }
 
     void OnclickBtn()
