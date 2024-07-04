@@ -9,18 +9,21 @@ public class GameSceneController : MonoBehaviour
     //public GameObject obstacle;
     public GameObject cannonparent;
     public GameObject obstacleparent;
-
+    private int currentlevel;
     
 
 
     public void Start()
     {
         LoadData();
+        
+        
+        
     }
 
     public void Update()
     {
-
+        transform.rotation = Quaternion.identity;
         
     }
 
@@ -32,8 +35,8 @@ public class GameSceneController : MonoBehaviour
         var level = levelData.levels;
         if (GameplayController.instance.currentlevel == 1)
         {
-            Instantiate(level[0].obstacle, obstacleparent.transform);
-            Instantiate(level[0].cannon, cannonparent.transform);
+            // Instantiate(level[0].obstacle, obstacleparent.transform);
+            //Instantiate(level[0].cannon, cannonparent.transform);
             
         }
         if (GameplayController.instance.currentlevel == 2)
@@ -47,6 +50,7 @@ public class GameSceneController : MonoBehaviour
             Instantiate(level[2].obstacle, obstacleparent.transform);
             Instantiate(level[2].cannon, cannonparent.transform);
             cannonparent.transform.position = level[2].position;
+            level[2].rotation = Quaternion.Euler(new Vector3(0, 0, 47.5f));
             cannonparent.transform.rotation = level[2].rotation;
         }
 
@@ -54,8 +58,11 @@ public class GameSceneController : MonoBehaviour
         {
             Instantiate(level[3].obstacle, obstacleparent.transform);
             Instantiate(level[3].cannon, cannonparent.transform);
+
+            level[3].rotation = Quaternion.Euler(new Vector3(0, 0, -47.5f));
             cannonparent.transform.position = level[3].position;
             cannonparent.transform.rotation = level[3].rotation;
+
         }
         if (GameplayController.instance.currentlevel == 5)
         {
