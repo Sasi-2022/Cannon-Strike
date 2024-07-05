@@ -37,7 +37,10 @@ public class GameSceneController : MonoBehaviour
         {
             // Instantiate(level[0].obstacle, obstacleparent.transform);
             //Instantiate(level[0].cannon, cannonparent.transform);
-            
+            Instantiate(level[24].obstacle, obstacleparent.transform);
+            Instantiate(level[24].cannon, cannonparent.transform);
+            cannonparent.transform.position = level[24].position;
+            cannonparent.transform.rotation = level[24].rotation;
         }
         if (GameplayController.instance.currentlevel == 2)
         {
@@ -89,6 +92,7 @@ public class GameSceneController : MonoBehaviour
         {
             Instantiate(level[7].obstacle, obstacleparent.transform);
             Instantiate(level[7].cannon, cannonparent.transform);
+            level[7].rotation = Quaternion.Euler(new Vector3(0, 0, 44));
             cannonparent.transform.position = level[7].position;
             cannonparent.transform.rotation = level[7].rotation;
         }
@@ -140,6 +144,7 @@ public class GameSceneController : MonoBehaviour
         {
             Instantiate(level[14].obstacle, obstacleparent.transform);
             Instantiate(level[14].cannon, cannonparent.transform);
+            level[14].rotation = Quaternion.Euler(new Vector3(0, 0, 63));
             cannonparent.transform.position = level[14].position;
             cannonparent.transform.rotation = level[14].rotation;
         }
@@ -182,6 +187,7 @@ public class GameSceneController : MonoBehaviour
         {
             Instantiate(level[20].obstacle, obstacleparent.transform);
             Instantiate(level[20].cannon, cannonparent.transform);
+            level[20].rotation = Quaternion.Euler(new Vector3(0, 0, -51f));
             cannonparent.transform.position = level[20].position;
             cannonparent.transform.rotation = level[20].rotation;
         }

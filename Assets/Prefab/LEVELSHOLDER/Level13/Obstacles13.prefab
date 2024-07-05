@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5556492175232631997}
   - component: {fileID: 5758915321726769068}
   - component: {fileID: 3720291978684367986}
-  - component: {fileID: 7780612409460820583}
   m_Layer: 0
   m_Name: Obstacles10 (1)
   m_TagString: obstacle
@@ -159,18 +158,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &7780612409460820583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4130260031875562292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49518ada86ef140c0aeb3daabdf51a45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4751836858173759686
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +170,6 @@ GameObject:
   - component: {fileID: 4826636777281857562}
   - component: {fileID: 7210671643045746965}
   - component: {fileID: 5483639152759887136}
-  - component: {fileID: 8056520653922504644}
   m_Layer: 0
   m_Name: Obstacles10 (1)
   m_TagString: obstacle
@@ -199,12 +185,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4751836858173759686}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.8530958, w: 0.52175426}
+  m_LocalRotation: {x: -0, y: -0, z: -0.8530958, w: 0.52175426}
   m_LocalPosition: {x: -1.05, y: 1.78, z: 0}
   m_LocalScale: {x: 0.59, y: 0.62, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1522879724685967483}
+  m_Father: {fileID: 5786300585491537597}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -117.1}
 --- !u!212 &4826636777281857562
 SpriteRenderer:
@@ -330,18 +316,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &8056520653922504644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4751836858173759686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49518ada86ef140c0aeb3daabdf51a45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5809033854001404275
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,7 +328,6 @@ GameObject:
   - component: {fileID: 7282806685094106248}
   - component: {fileID: 5573332960079675303}
   - component: {fileID: 878140723695855308}
-  - component: {fileID: 7260595631544000826}
   m_Layer: 0
   m_Name: Obstacles10
   m_TagString: obstacle
@@ -370,12 +343,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5809033854001404275}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.49090374, w: 0.87121385}
+  m_LocalRotation: {x: -0, y: -0, z: 0.49090374, w: 0.87121385}
   m_LocalPosition: {x: -2.54, y: -0.79, z: 0}
-  m_LocalScale: {x: 0.59, y: 0.62, z: 1}
+  m_LocalScale: {x: 0.59000003, y: 0.62000006, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1522879724685967483}
+  m_Father: {fileID: 5786300585491537597}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 58.8}
 --- !u!212 &7282806685094106248
 SpriteRenderer:
@@ -501,18 +474,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &7260595631544000826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5809033854001404275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49518ada86ef140c0aeb3daabdf51a45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5898231767512876216
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,6 +506,8 @@ Transform:
   m_Children:
   - {fileID: 4261865447784368211}
   - {fileID: 6057581647513365467}
+  - {fileID: 998393043149020469}
+  - {fileID: 5202974801934119177}
   m_Father: {fileID: 5523855692150348399}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3878000490593033376
@@ -590,7 +553,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5786300585491537597}
-  - {fileID: 1522879724685967483}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7561138958750304772
@@ -605,7 +567,6 @@ GameObject:
   - component: {fileID: 4881423056358622193}
   - component: {fileID: 4224248389373934807}
   - component: {fileID: 4776880799298852788}
-  - component: {fileID: 7931651011185224451}
   m_Layer: 0
   m_Name: Obstacles10
   m_TagString: obstacle
@@ -752,62 +713,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &7931651011185224451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7561138958750304772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49518ada86ef140c0aeb3daabdf51a45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &7709518474479905549
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1522879724685967483}
-  - component: {fileID: 488089052883463806}
-  m_Layer: 0
-  m_Name: GameObject (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1522879724685967483
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7709518474479905549}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 998393043149020469}
-  - {fileID: 5202974801934119177}
-  m_Father: {fileID: 5523855692150348399}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &488089052883463806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7709518474479905549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51fe9fef4a4894eefbf72b3963127d49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 90

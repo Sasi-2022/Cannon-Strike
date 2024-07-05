@@ -29,43 +29,43 @@ MonoBehaviour:
     isfinish: 0
   - Id: 3
     LevelsNo: 3
-    position: {x: 20, y: 675, z: 0}
-    rotation: {x: 0, y: 0, z: 45, w: 0}
+    position: {x: 0.1, y: 3, z: 0}
+    rotation: {x: 0, y: 0, z: 0.4027467, w: 0.91531146}
     obstacle: {fileID: 3494981001227783827, guid: fe43c4655a5454c01910613044e96738, type: 3}
     cannon: {fileID: 8865618021909156178, guid: d542d346bcb39408689979bcb596d3d0, type: 3}
     isfinish: 0
   - Id: 4
     LevelsNo: 4
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 0}
-    obstacle: {fileID: 1927488580744661561, guid: 639f0f69db39d477b900b9fcc4810c67, type: 3}
+    position: {x: 0, y: 2, z: 0}
+    rotation: {x: 0, y: 0, z: -0.4027467, w: 0.91531146}
+    obstacle: {fileID: 4786171817978372780, guid: 90aec64d63e45422b80a6775cefcf43d, type: 3}
     cannon: {fileID: 8865618021909156178, guid: d542d346bcb39408689979bcb596d3d0, type: 3}
     isfinish: 0
   - Id: 4
     LevelsNo: 4
-    position: {x: 0, y: 0, z: 0}
+    position: {x: 0, y: 2.5, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 0}
     obstacle: {fileID: 1626386478285469090, guid: 9326f0f775bb24b6bba87c458aa164fa, type: 3}
     cannon: {fileID: 8865618021909156178, guid: d542d346bcb39408689979bcb596d3d0, type: 3}
     isfinish: 0
   - Id: 4
     LevelsNo: 4
-    position: {x: 0, y: 0, z: 0}
+    position: {x: 0, y: 2.5, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 0}
     obstacle: {fileID: 9169537074289660666, guid: 38d9c75423b364892995e3c518e7f244, type: 3}
     cannon: {fileID: 8865618021909156178, guid: d542d346bcb39408689979bcb596d3d0, type: 3}
     isfinish: 0
   - Id: 4
     LevelsNo: 4
-    position: {x: 0, y: 0, z: 0}
+    position: {x: 0, y: 2.8, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 0}
     obstacle: {fileID: 6869497251439403737, guid: 60547f7fd1710404d917bdfade538114, type: 3}
     cannon: {fileID: 8865618021909156178, guid: d542d346bcb39408689979bcb596d3d0, type: 3}
     isfinish: 0
   - Id: 4
     LevelsNo: 4
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 0}
+    position: {x: -0.8, y: 2.5, z: 0}
+    rotation: {x: 0, y: 0, z: 0.37460658, w: 0.92718387}
     obstacle: {fileID: 4448611331360176212, guid: 766eb2bcf83b5410cb3241d8ce222951, type: 3}
     cannon: {fileID: 8865618021909156178, guid: d542d346bcb39408689979bcb596d3d0, type: 3}
     isfinish: 0
