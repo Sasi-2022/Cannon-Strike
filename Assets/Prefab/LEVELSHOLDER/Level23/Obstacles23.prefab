@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8451563557315244059}
   - component: {fileID: 3704031388819237217}
   - component: {fileID: 7306744071797250074}
-  - component: {fileID: 5306134056419571771}
   m_Layer: 0
   m_Name: Obstacles1 (1)
   m_TagString: obstacle
@@ -159,18 +158,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &5306134056419571771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3107951282576507229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49518ada86ef140c0aeb3daabdf51a45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8519171357648646103
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,6 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8814661862556001800}
+  - component: {fileID: 6476777834690468832}
   m_Layer: 0
   m_Name: Obstacles23
   m_TagString: Untagged
@@ -204,6 +192,19 @@ Transform:
   - {fileID: 4362650940347638816}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 27.2}
+--- !u!114 &6476777834690468832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8519171357648646103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51fe9fef4a4894eefbf72b3963127d49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 90
 --- !u!1 &8709977881765127154
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +217,6 @@ GameObject:
   - component: {fileID: 188183874415927982}
   - component: {fileID: 9085355062585196877}
   - component: {fileID: 7875508732663477154}
-  - component: {fileID: 67567633276460893}
   m_Layer: 0
   m_Name: Obstacles1 (2)
   m_TagString: obstacle
@@ -363,15 +363,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &67567633276460893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8709977881765127154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49518ada86ef140c0aeb3daabdf51a45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

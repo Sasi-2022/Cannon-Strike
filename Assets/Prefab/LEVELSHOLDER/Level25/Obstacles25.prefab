@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 8508264740819324256}
   - component: {fileID: 3427830492911032462}
   - component: {fileID: 7900813266401881175}
-  - component: {fileID: 861256326032365384}
   - component: {fileID: 8812304306759873113}
+  - component: {fileID: 5353581736686533435}
+  - component: {fileID: 861256326032365384}
   m_Layer: 0
   m_Name: Obstacles31 (2)
   m_TagString: obstacle
@@ -114,18 +115,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &861256326032365384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2976775678318585615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49518ada86ef140c0aeb3daabdf51a45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &8812304306759873113
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -161,6 +150,31 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.56
+--- !u!114 &5353581736686533435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2976775678318585615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51fe9fef4a4894eefbf72b3963127d49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 90
+--- !u!114 &861256326032365384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2976775678318585615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49518ada86ef140c0aeb3daabdf51a45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4640488063678405149
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +187,6 @@ GameObject:
   - component: {fileID: 4136980267314289056}
   - component: {fileID: 5330246748219853678}
   - component: {fileID: 5603244603915302342}
-  - component: {fileID: 2463502992987040248}
   m_Layer: 0
   m_Name: Obstacles1 (1)
   m_TagString: obstacle
@@ -190,7 +203,7 @@ Transform:
   m_GameObject: {fileID: 4640488063678405149}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -1.67, y: 0.13, z: 0}
+  m_LocalPosition: {x: -2.22, y: 0.13, z: 0}
   m_LocalScale: {x: 1.67, y: 0.8000001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -320,18 +333,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &2463502992987040248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4640488063678405149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49518ada86ef140c0aeb3daabdf51a45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5124464270830973914
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +379,6 @@ GameObject:
   - component: {fileID: 8964144606259290811}
   - component: {fileID: 8215491217857836948}
   - component: {fileID: 7724517030451272951}
-  - component: {fileID: 8477525274852531237}
   m_Layer: 0
   m_Name: Obstacles1 (3)
   m_TagString: obstacle
@@ -395,7 +395,7 @@ Transform:
   m_GameObject: {fileID: 6361950464350666295}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.15999997, y: 0.13, z: 0}
+  m_LocalPosition: {x: 0.75, y: 0.13, z: 0}
   m_LocalScale: {x: 1.67, y: 0.8000001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -525,15 +525,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &8477525274852531237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6361950464350666295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49518ada86ef140c0aeb3daabdf51a45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

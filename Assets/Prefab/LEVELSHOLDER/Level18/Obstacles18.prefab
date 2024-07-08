@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7005706018351071219}
   - component: {fileID: 6009059652660930725}
   - component: {fileID: 417406186344252890}
-  - component: {fileID: 8661117063697292855}
+  - component: {fileID: 8058739771138009445}
   m_Layer: 0
   m_Name: Obstacles1 (3)
   m_TagString: obstacle
@@ -159,7 +159,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &8661117063697292855
+--- !u!114 &8058739771138009445
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,9 +168,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 943248868735927883}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49518ada86ef140c0aeb3daabdf51a45, type: 3}
+  m_Script: {fileID: 11500000, guid: f4d3834a779ac4e9b9f4feabb5ce596a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 90
 --- !u!1 &2156203360289405204
 GameObject:
   m_ObjectHideFlags: 0
