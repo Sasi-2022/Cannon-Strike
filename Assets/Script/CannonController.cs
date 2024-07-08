@@ -20,6 +20,8 @@ public class CannonController : MonoBehaviour
 
     public Button cannon;
 
+   
+
     private SpriteRenderer spriteRenderer;
 
     public Sprite[] balls;
@@ -31,22 +33,23 @@ public class CannonController : MonoBehaviour
         //text.Invoke();
         spriteRenderer = projectilePrefab.GetComponent<SpriteRenderer>();
         cannon.onClick.AddListener(FireProjectile);
+       
     }
 
     void Update()
     {
-      /*  if (Input.GetMouseButtonDown(0) && currentProjectiles > 0)
-        {
-            FireProjectile();
-           // text.Invoke();
-        }*/
-
+        /*  if (Input.GetMouseButtonDown(0) && currentProjectiles > 0)
+          {
+              FireProjectile();
+             // text.Invoke();
+          }*/
+        ButtonDisable();
     }
 
     void FireProjectile()
     {
-        if (Levels.instance.pickedlevels == "Level1")
-        {
+      //  if (Levels.instance.pickedlevels == "Level1")
+       // {
             spriteRenderer.sprite = balls[0];
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
@@ -56,8 +59,8 @@ public class CannonController : MonoBehaviour
 
             
             
-        }
-        if (Levels.instance.pickedlevels == "Level2")
+       // }
+      /*  if (Levels.instance.pickedlevels == "Level2")
         {
             spriteRenderer.sprite = balls[1];
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
@@ -144,7 +147,7 @@ public class CannonController : MonoBehaviour
             currentProjectiles--;
             text.Invoke();
 
-        }
+        }*/
 
     }
 
@@ -153,6 +156,16 @@ public class CannonController : MonoBehaviour
         if (other.CompareTag("Boundary"))
         {
             Destroy(gameObject); // Destroy the projectile
+        }
+    }
+
+   private void ButtonDisable()
+    {
+        if (UIManager.instance.currentProjectiles == 0)
+        {
+            cannon.interactable = false;
+           
+            
         }
     }
 }
