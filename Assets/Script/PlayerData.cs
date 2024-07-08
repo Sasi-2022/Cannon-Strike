@@ -21,17 +21,17 @@ public class PlayerData : MonoBehaviour
             player = value;
         }
     }
-    /*  public void RetrievePlayerData()
+      public void RetrievePlayerData()
       {
           try
           {
-              if (player != null || GameController.instance.Player.guestLogin)
+              if (player != null || GameplayController.instance.Player.guestLogin)
               {
                   player = new Player();
-                  player = GameController.instance.PlayerDataSO.player;
-                  GameController.instance.PlayerObj.player = player;
-                  GameController.instance.PlayerObj.PlayerInfo = new Player();
-                  GameController.SavePlayerData.Invoke();
+                  player = GameplayController.instance.PlayerDataSO.player;
+                GameplayController.instance.PlayerObj.player = player;
+                GameplayController.instance.PlayerObj.PlayerInfo = new Player();
+                GameplayController.SavePlayerData.Invoke();
               }
 
           }
@@ -40,19 +40,16 @@ public class PlayerData : MonoBehaviour
 
           }
 
-      }*/
+      }
 
 }
 
     [Serializable]
     public class Player
     {
-        public int CurrentLocationId;
-        public int Currentid;
-        public int PlayerCurrentLevel;
-        public int PlayerCoinsEarned = 5000;
-        public int PlayerGemsEarned = 500;
-        public int Playerlives = 5;
+        
+        public int PlayerCurrentLevel=1;
+        
         public bool guestLogin;
     }
 

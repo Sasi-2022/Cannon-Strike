@@ -78,7 +78,10 @@ public class UIManager : MonoBehaviour
         counttext.text = $"{balls.ToString()}/{ totalcount.ToString()}";
         if (balls == 20)
         {
-            GameplayController.instance.currentlevel++;
+            // GameplayController.instance.currentlevel++;
+            GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel++;
+           // PlayerPrefs.SetInt("level",1);
+
         }
     }
 
@@ -108,7 +111,7 @@ public class UIManager : MonoBehaviour
             winningpanel.SetActive(true);
             losspanel.SetActive(false);
             iswin = true;
-           
+           // PlayerPrefs.SetInt("level", 1);
 
             //var losball = maxProjectiles - balls - currentProjectiles;
             // loseballs.text = $"LoseBalls : {loseball.ToString()}";
