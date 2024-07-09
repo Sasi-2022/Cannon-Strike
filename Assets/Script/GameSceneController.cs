@@ -28,7 +28,16 @@ public class GameSceneController : MonoBehaviour
     public void Update()
     {
         transform.rotation = Quaternion.identity;
-        
+        if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 34 || GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 44)
+        {
+            float distance = 2f;
+            float speed = 2f;
+
+            float yPos = transform.position.y;
+            float zPos = transform.position.z;
+            float xPos = Mathf.Sin(Time.time * speed) * distance;
+            cannonparent.transform.position = new Vector3(xPos, yPos, zPos);
+        }
     }
 
 
@@ -320,7 +329,11 @@ public class GameSceneController : MonoBehaviour
         {
             Instantiate(level[33].obstacle, obstacleparent.transform);
             Instantiate(level[33].cannon, cannonparent.transform);
+
             cannonparent.transform.position = level[33].position;
+            
+
+            
             cannonparent.transform.rotation = level[33].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
         }
