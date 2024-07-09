@@ -165,9 +165,12 @@ public class CannonController : MonoBehaviour
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 11)
         {
             spriteRenderer.sprite = balls[1];
-            GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-            rb.AddForce(shootPoint.forward * shootForce, ForceMode2D.Impulse);
+
+            Vector2 shootDirection = Vector2.left;
+
+            rb.AddForce(shootDirection * shootForce, ForceMode2D.Impulse);
             currentProjectiles--;
             text.Invoke();
 
