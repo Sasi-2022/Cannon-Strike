@@ -248,7 +248,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.rotation = level[23].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
         }
-        if (GameplayController.instance.currentlevel == 25)
+        if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 25)
         {
             Instantiate(level[24].obstacle, obstacleparent.transform);
             Instantiate(level[24].cannon, cannonparent.transform);
