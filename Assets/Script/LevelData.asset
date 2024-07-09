@@ -29,8 +29,8 @@ MonoBehaviour:
     isfinish: 0
   - Id: 3
     LevelsNo: 3
-    position: {x: 0.1, y: 3, z: 0}
-    rotation: {x: 0, y: 0, z: -0.4305111, w: 0.90258527}
+    position: {x: -0.1, y: 3, z: 0}
+    rotation: {x: 0, y: 0, z: 0.4027467, w: 0.91531146}
     obstacle: {fileID: 3494981001227783827, guid: fe43c4655a5454c01910613044e96738, type: 3}
     cannon: {fileID: 8865618021909156178, guid: d542d346bcb39408689979bcb596d3d0, type: 3}
     isfinish: 0
@@ -177,7 +177,7 @@ MonoBehaviour:
   - Id: 4
     LevelsNo: 4
     position: {x: -0.5, y: 3, z: 0}
-    rotation: {x: 0, y: 0, z: 0.2923717, w: 0.9563048}
+    rotation: {x: 0, y: 0, z: 0.67365766, w: 0.73904353}
     obstacle: {fileID: 7924035481785515614, guid: 0b2bdf5ba6e95486a97a3b924e3fab9f, type: 3}
     cannon: {fileID: 8865618021909156178, guid: d542d346bcb39408689979bcb596d3d0, type: 3}
     isfinish: 0
@@ -225,7 +225,7 @@ MonoBehaviour:
     isfinish: 0
   - Id: 4
     LevelsNo: 4
-    position: {x: -2, y: 2.7, z: 0}
+    position: {x: 0.5, y: 3, z: 0}
     rotation: {x: 0, y: 0, z: 0.46947157, w: 0.88294756}
     obstacle: {fileID: 1848040427398824263, guid: 8107199bba2bf4c04a77d4d714d8f7c9, type: 3}
     cannon: {fileID: 8865618021909156178, guid: d542d346bcb39408689979bcb596d3d0, type: 3}
@@ -246,7 +246,7 @@ MonoBehaviour:
     isfinish: 0
   - Id: 4
     LevelsNo: 4
-    position: {x: 0, y: 3, z: 0}
+    position: {x: 0, y: 5, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 0}
     obstacle: {fileID: 2444035507075806301, guid: 588bbe0fbf1464d6e87442d225093900, type: 3}
     cannon: {fileID: 8865618021909156178, guid: d542d346bcb39408689979bcb596d3d0, type: 3}

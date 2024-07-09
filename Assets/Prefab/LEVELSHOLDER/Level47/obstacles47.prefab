@@ -500,7 +500,7 @@ Transform:
   m_GameObject: {fileID: 4142344575656054468}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.13, y: 2.91, z: 0}
+  m_LocalPosition: {x: -1.13, y: 2.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fe9fef4a4894eefbf72b3963127d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 90
+  rotationSpeed: 60
 --- !u!1 &5504592412306632084
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +552,7 @@ Transform:
   m_GameObject: {fileID: 5504592412306632084}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.4199288, z: -0.08485553}
+  m_LocalPosition: {x: 1.52, y: 1.39, z: -0.08485553}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -782,7 +782,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4906834139663001795}
   m_Layer: 0
-  m_Name: Obstacles47
+  m_Name: obstacles47
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -801,9 +801,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5313114991251130731}
   - {fileID: 3172141218015510482}
   - {fileID: 1197026669097785135}
+  - {fileID: 5313114991251130731}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8738166406550805904
