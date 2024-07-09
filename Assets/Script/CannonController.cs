@@ -362,7 +362,7 @@ public class CannonController : MonoBehaviour
             GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
-            Vector2 shootDirection = Vector2.right;
+            Vector2 shootDirection = Vector2.left;
 
             rb.AddForce(shootDirection * shootForce, ForceMode2D.Impulse);
             currentProjectiles--;

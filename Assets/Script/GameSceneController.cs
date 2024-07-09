@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameSceneController : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class GameSceneController : MonoBehaviour
     public GameObject obstacleparent;
     private int currentlevel;
     public PlayerDataSO playerDataSO;
+    public Button homeBtn;
     
 
 
@@ -20,8 +23,8 @@ public class GameSceneController : MonoBehaviour
         // GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel = 1;
         PlayerPrefs.GetInt("playerlevel", currentlevel);
         LoadData();
-        
 
+        homeBtn.onClick.AddListener(OnClickHomeBtn);
 
     }
 
@@ -40,6 +43,10 @@ public class GameSceneController : MonoBehaviour
         }
     }
 
+    public void OnClickHomeBtn()
+    {
+        SceneManager.LoadScene("EntryScene");
+    }
 
 
     public void LoadData()
