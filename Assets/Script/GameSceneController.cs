@@ -14,6 +14,7 @@ public class GameSceneController : MonoBehaviour
     private int currentlevel;
     public PlayerDataSO playerDataSO;
     public Button homeBtn;
+    public Image levelheadername;
     
 
 
@@ -57,7 +58,7 @@ public class GameSceneController : MonoBehaviour
         {
               Instantiate(level[0].obstacle, obstacleparent.transform);
              Instantiate(level[0].cannon, cannonparent.transform);
-            
+            levelheadername.sprite = level[0].levelname;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
            // PlayerPrefs.Save();
         }

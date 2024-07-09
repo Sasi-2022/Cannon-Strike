@@ -56,7 +56,7 @@ public class LevelManager : MonoBehaviour
         {
             var a = Instantiate(levelitem, levelcontainer.transform);
             var b = a.GetComponent<LevelsHandler>();
-            b.id = e.Id;
+          //  b.id = e.Id;
             b.leveltext.text = e.LevelsNo;
             b.id = playerDataSO.player.PlayerCurrentLevel;
 

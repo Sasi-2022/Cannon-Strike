@@ -12,12 +12,13 @@ public class LevelDataSO : ScriptableObject
 [Serializable]
 public class Level
 {
-    public int Id;
+    
     public string LevelsNo;
     public Vector3 position;
     public Quaternion rotation;
     public GameObject obstacle;
     public GameObject cannon;
     public bool isfinish;
+    public Sprite levelname;
 
 }
