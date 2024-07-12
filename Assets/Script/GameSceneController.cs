@@ -25,7 +25,7 @@ public class GameSceneController : MonoBehaviour
         PlayerPrefs.GetInt("playerlevel", currentlevel);
         LoadData();
 
-       // homeBtn.onClick.AddListener(OnClickHomeBtn);
+        homeBtn.onClick.AddListener(OnClickHomeBtn);
 
     }
 
