@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerdataSO
   m_EditorClassIdentifier: 
   player:
-    PlayerCurrentLevel: 49
+    PlayerCurrentLevel: 1
     guestLogin: 0

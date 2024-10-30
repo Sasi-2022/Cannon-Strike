@@ -31,7 +31,7 @@ public class Levels : MonoBehaviour
     {
         Time.timeScale = 1f;
         pickedlevels = "Level1";
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
        //level1.Invoke();
     }
 
@@ -39,7 +39,7 @@ public class Levels : MonoBehaviour
     {
         Time.timeScale = 1f;
         pickedlevels = "Level2";
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
        // level2.Invoke();
     }
 
@@ -47,7 +47,7 @@ public class Levels : MonoBehaviour
     {
         Time.timeScale = 1f;
         pickedlevels = "Level3";
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
         //level3.Invoke();
     }
 
@@ -55,7 +55,7 @@ public class Levels : MonoBehaviour
     {
         Time.timeScale = 1f;
         pickedlevels = "Level4";
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
         //level4.Invoke();
     }
 
@@ -63,7 +63,7 @@ public class Levels : MonoBehaviour
     {
         Time.timeScale = 1f;
         pickedlevels = "Level5";
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
         //level4.Invoke();
     }
 
@@ -71,7 +71,7 @@ public class Levels : MonoBehaviour
     {
         Time.timeScale = 1f;
         pickedlevels = "Level6";
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
         //level4.Invoke();
     }
 
@@ -79,7 +79,7 @@ public class Levels : MonoBehaviour
     {
         Time.timeScale = 1f;
         pickedlevels = "Level7";
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
         //level4.Invoke();
     }
 
@@ -87,14 +87,14 @@ public class Levels : MonoBehaviour
     {
         Time.timeScale = 1f;
         pickedlevels = "Level8";
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
         //level4.Invoke();
     }
     public void btn_level9()
     {
         Time.timeScale = 1f;
         pickedlevels = "Level9";
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
         //level4.Invoke();
     }
 }
