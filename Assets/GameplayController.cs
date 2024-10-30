@@ -52,12 +52,12 @@ public class GameplayController : MonoBehaviour
 
     public void Start()
     {
-        //currentlevel = 1;
-        // playerDataSO.player.PlayerCurrentLevel = 1;
+        currentlevel = 1;
+         playerDataSO.player.PlayerCurrentLevel = 1;
         PlayerPrefs.GetInt("playerlevel", 1);
         PlayerPrefs.Save();
-          //int savedLevel = PlayerPrefs.GetInt("PlayerLevel", 1);
-        //  Debug.Log("Player's saved level: " + savedLevel);*/
+          int savedLevel = PlayerPrefs.GetInt("PlayerLevel", 1);
+          Debug.Log("Player's saved level: " + savedLevel);
     }
 
     private void OnEnable()
