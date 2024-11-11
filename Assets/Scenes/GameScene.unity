@@ -2715,6 +2715,7 @@ MonoBehaviour:
   star1: {fileID: 1046048841}
   star2: {fileID: 1046048840}
   star3: {fileID: 1046048839}
+  gameManager: {fileID: 0}
   levelDataSO: {fileID: 11400000, guid: 6de8ab447301a493b876734b16e78e4b, type: 2}
   iswin: 0
 --- !u!4 &1731423810

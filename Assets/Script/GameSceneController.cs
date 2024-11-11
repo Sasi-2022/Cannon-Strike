@@ -20,12 +20,15 @@ public class GameSceneController : MonoBehaviour
 
     public void Start()
     {
+
         int currentlevel = GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel;
         // GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel = 1;
         PlayerPrefs.GetInt("playerlevel", currentlevel);
+        int startingLevel = GameplayController.instance.GetCurrentLevel();
         LoadData();
 
         homeBtn.onClick.AddListener(OnClickHomeBtn);
+        StartGame();
 
     }
 
@@ -42,6 +45,12 @@ public class GameSceneController : MonoBehaviour
             float xPos = Mathf.Sin(Time.time * speed) * distance;
             cannonparent.transform.position = new Vector3(xPos, yPos, zPos);
         }
+    }
+
+    public void StartGame()
+    {
+        int startingLevel = GameplayController.instance.GetCurrentLevel();
+        Debug.Log("Starting from Level: " + startingLevel);
     }
 
     public void OnClickHomeBtn()

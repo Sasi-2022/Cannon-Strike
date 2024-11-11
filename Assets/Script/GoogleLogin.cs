@@ -22,8 +22,9 @@
     using UnityEngine.UI;
     using UnityEngine.SceneManagement;
     using System.Collections;
+    using System.IO;
 
-    public class GoogleLogin : MonoBehaviour
+public class GoogleLogin : MonoBehaviour
     {
 
         public Text statusText;
@@ -31,159 +32,196 @@
         public string webClientId = "953055538475-hc0q9gvdpcf776hlc3obq3i559pb67rc.apps.googleusercontent.com";
 
         private GoogleSignInConfiguration configuration;
+    
 
-    // Defer the configuration creation until Awake so the web Client ID
-    // Can be set via the property inspector in the Editor.
-    void Awake()
+    private string localDataPath;
+
+    public static GoogleLogin instance;
+    public bool googleLoginbool;
+    public string username;
+    public Sprite _profilePic;
+
+    // Serializable class for saving user data as JSON
+    [System.Serializable]
+    public class UserData
+    {
+        public string displayName;
+        public string email;
+        public string userId;
+    }
+
+    private void Awake()
     {
         configuration = new GoogleSignInConfiguration
         {
             WebClientId = webClientId,
-            RequestIdToken = true,
-            RequestEmail = true,
-            RequestAuthCode = true
+            RequestIdToken = true
         };
-    }
-    private void Start()
-        {
-           /* if (offlineplay.GameManager.Instance.isLogin == false)
-                OnSignIn();
-            else
-            {
-                if (offlineplay.GameManager.Instance.IwannaGoogleLogin == true)
-                    OnSignIn();
-                else
-                {
-                    OnSignOut();
-                }
-            }*/
 
-        }
-        public void OnSignIn()
-        {
-            GoogleSignIn.Configuration = configuration;
-        GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished);
-        // GoogleSignIn.Configuration.UseGameSignIn = false;
-        // GoogleSignIn.Configuration.RequestIdToken = true;
-         AddStatusText("Calling SignIn");
-        // GoogleSignIn.DefaultInstance.SignOut();
-        // StartCoroutine(abab());
-    }
-        IEnumerator abab()
-        {
-            yield return new WaitForSeconds(0.2f);
-            GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished);
-        }
-
-        public void OnSignOut()
-        {
-            Debug.Log("signout");
-           // AddStatusText("Calling SignOut");
-            GoogleSignIn.DefaultInstance.SignOut();
+        // Set up path for saving the data locally
         
-           // offlineplay.GameManager.Instance.UserName = "";
-           // offlineplay.GameManager.Instance.isLogin = false;
-           // offlineplay.GameManager.Instance._Login_Mode = LOGIN_MODE.guest;
-           // offlineplay.GameManager.Instance.AvatarImage = Resources.Load("Avatar1") as Texture;
-            //offlineplay.GameManager.Instance.AvatarURL = "";
-            PlayerPrefs.DeleteKey("USERNAME");
-            PlayerPrefs.DeleteKey("LOGIN");
 
-            SceneManager.LoadScene("MenuScene");
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            //instance = null;
+            Destroy(gameObject);
+        }
+        localDataPath = Application.persistentDataPath + "/GoogleData.json";
+        LoadUserData();
+    }
+
+    private void Start()
+    {
+        LoadUserData(); // Attempt to load user data when the app starts
+    }
+
+    public void OnSignIn()
+    {
+        GoogleSignIn.Configuration = configuration;
+        GoogleSignIn.Configuration.UseGameSignIn = false;
+        GoogleSignIn.Configuration.RequestIdToken = true;
+        AddStatusText("Calling SignIn");
+        GoogleSignIn.DefaultInstance.SignOut();
+        StartCoroutine(SignInCoroutine());
+    }
+
+    IEnumerator SignInCoroutine()
+    {
+        yield return new WaitForSeconds(0.2f);
+        GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished);
+    }
+
+    public void OnSignOut()
+    {
+        Debug.Log("signout");
+        AddStatusText("Calling SignOut");
+        GoogleSignIn.DefaultInstance.SignOut();
+        PlayerPrefs.DeleteKey("USERNAME");
+        PlayerPrefs.DeleteKey("LOGIN");
+        // Clear saved user data file
+        if (File.Exists(localDataPath))
+        {
+            File.Delete(localDataPath);
         }
 
-        public void OnDisconnect()
+        // LoginPanel.gameObject.SetActive(true);
+        SceneManager.LoadScene(0);
+        googleLoginbool = false;
+    }
+
+    public void OnDisconnect()
+    {
+        AddStatusText("Calling Disconnect");
+        GoogleSignIn.DefaultInstance.Disconnect();
+    }
+
+    internal void OnAuthenticationFinished(Task<GoogleSignInUser> task)
+    {
+        if (task.IsFaulted)
         {
-           // AddStatusText("Calling Disconnect");
-            GoogleSignIn.DefaultInstance.Disconnect();
+            Debug.Log("task.IsFaulted ");
+            AddStatusText("Got Error: " + task.Exception.Message);
+           // LoginPanel.gameObject.SetActive(true);
         }
-
-        internal void OnAuthenticationFinished(Task<GoogleSignInUser> task)
+        else if (task.IsCanceled)
         {
-            Debug.Log("task.IsFaulted " + task.IsFaulted + " task.IsCanceled" + task.IsCanceled);
-            if (task.IsFaulted)
-            {
-                Debug.Log("task.IsFaulted ");
-
-                using (IEnumerator<System.Exception> enumerator =
-                        task.Exception.InnerExceptions.GetEnumerator())
-                {
-                    if (enumerator.MoveNext())
-                    {
-                        GoogleSignIn.SignInException error =
-                                (GoogleSignIn.SignInException)enumerator.Current;
-                        AddStatusText("Got Error: " + error.Status + " " + error.Message);
-                       // offlineplay.GameManager.Instance.IwannaGoogleLogin = false;
-                        SceneManager.LoadScene(1);
-                    }
-                    else
-                    {
-                        AddStatusText("Got Unexpected Exception?!?" + task.Exception);
-                       // offlineplay.GameManager.Instance.IwannaGoogleLogin = false;
-                        SceneManager.LoadScene(1);
-                    }
-                }
-            }
-            else if (task.IsCanceled)
-            {
-                Debug.Log("task.IsCanceled");
-
-                AddStatusText("Canceled");
-               // offlineplay.GameManager.Instance.IwannaGoogleLogin = false;
-                SceneManager.LoadScene("MenuScene");
-            }
-            else
-            {
-                Debug.Log("task.success ");
-
-               // AddStatusText("Welcome: " + task.Result.DisplayName + "!");
-               // UserData.Instance.UserName= task.Result.DisplayName;
-               // offlineplay.GameManager.Instance._Login_Mode = LOGIN_MODE.google;
-               // PlayerPrefs.SetString("USERNAME", UserData.Instance.UserName);
-               // PlayerPrefs.SetInt("LOGIN", (int)LOGIN_MODE.google);
-               // offlineplay.GameManager.Instance.IwannaGoogleLogin = true;
-               // offlineplay.GameManager.Instance.isLogin = false;
-                SceneManager.LoadScene(1);
-            }
+            Debug.Log("task.IsCanceled");
+            AddStatusText("Canceled");
+          //  LoginPanel.gameObject.SetActive(true);
         }
-
-        public void OnSignInSilently()
+        else
         {
-            GoogleSignIn.Configuration = configuration;
-            GoogleSignIn.Configuration.UseGameSignIn = false;
-            GoogleSignIn.Configuration.RequestIdToken = true;
-          //  AddStatusText("Calling SignIn Silently");
-
-            GoogleSignIn.DefaultInstance.SignInSilently()
-                  .ContinueWith(OnAuthenticationFinished);
-        }
-
-
-        public void OnGamesSignIn()
-        {
-            GoogleSignIn.Configuration = configuration;
-            GoogleSignIn.Configuration.UseGameSignIn = true;
-            GoogleSignIn.Configuration.RequestIdToken = false;
-
-           // AddStatusText("Calling Games SignIn");
-
-            GoogleSignIn.DefaultInstance.SignIn().ContinueWith(
-              OnAuthenticationFinished);
-        }
-
-        private List<string> messages = new List<string>();
-        void AddStatusText(string text)
-        {
-            //if (messages.Count == 5) {
-            //  messages.RemoveAt(0);
-            //}
-            //messages.Add(text);
-            //string txt = "";
-            //foreach (string s in messages) {
-            //  txt += "\n" + s;
-            //}
-            statusText.text += text;
-            Debug.Log(statusText.text);
+            Debug.Log("task.success ");
+            AddStatusText("Welcome: " + task.Result.DisplayName + "!");
+            username = "" + task.Result.DisplayName;
+            // Save user data locally (PlayerPrefs and JSON file)
+            SaveUserData(task.Result);
+            StartCoroutine(LoadProfilePic(task.Result.ImageUrl.ToString()));
+            // LoginPanel.gameObject.SetActive(true);
+            SceneManager.LoadScene(1);
+            googleLoginbool = true;
         }
     }
+
+    public void OnSignInSilently()
+    {
+        GoogleSignIn.Configuration = configuration;
+        GoogleSignIn.Configuration.UseGameSignIn = false;
+        GoogleSignIn.Configuration.RequestIdToken = true;
+        AddStatusText("Calling SignIn Silently");
+
+        GoogleSignIn.DefaultInstance.SignInSilently()
+              .ContinueWith(OnAuthenticationFinished);
+    }
+
+    public void OnGamesSignIn()
+    {
+        GoogleSignIn.Configuration = configuration;
+        GoogleSignIn.Configuration.UseGameSignIn = true;
+        GoogleSignIn.Configuration.RequestIdToken = false;
+
+        AddStatusText("Calling Games SignIn");
+
+        GoogleSignIn.DefaultInstance.SignIn().ContinueWith(
+          OnAuthenticationFinished);
+    }
+
+    private List<string> messages = new List<string>();
+    void AddStatusText(string text)
+    {
+        statusText.text += text + "\n";
+        Debug.Log(statusText.text);
+    }
+
+    IEnumerator LoadProfilePic(string imageUrl)
+    {
+        WWW www = new WWW(imageUrl);
+        yield return www;
+
+        _profilePic = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0, 0));
+        SceneManager.LoadScene(1);
+    }
+
+    // Save user data locally in a JSON file
+    private void SaveUserData(GoogleSignInUser user)
+    {
+        UserData userData = new UserData
+        {
+            displayName = user.DisplayName,
+            email = user.Email,
+            userId = user.UserId
+        };
+
+        // Serialize to JSON and save to file
+        string jsonData = JsonUtility.ToJson(userData, true);
+        File.WriteAllText(localDataPath, jsonData);
+        Debug.Log("User data saved to file.");
+
+        // Also store basic info in PlayerPrefs (optional)
+        PlayerPrefs.SetString("USERNAME", user.DisplayName);
+        PlayerPrefs.SetString("EMAIL", user.Email);
+        PlayerPrefs.SetString("USER_ID", user.UserId);
+        PlayerPrefs.Save();
+    }
+
+    // Load user data from the JSON file
+    private void LoadUserData()
+    {
+        if (File.Exists(localDataPath))
+        {
+            string jsonData = File.ReadAllText(localDataPath);
+            UserData loadedData = JsonUtility.FromJson<UserData>(jsonData);
+            AddStatusText("Welcome back: " + loadedData.displayName);
+        }
+        else
+        {
+            Debug.Log("No user data found. Please log in.");
+        }
+    }
+}
 

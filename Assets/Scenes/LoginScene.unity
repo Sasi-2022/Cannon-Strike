@@ -714,19 +714,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 649551089}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 687015238}
-        m_TargetAssemblyTypeName: GoogleLogin, Assembly-CSharp
-        m_MethodName: OnSignIn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &687015237
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,7 +745,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statusText: {fileID: 1027942783}
-  webClientId: 149417240144-abvmg3rb0nq8mlei9do8c729om8asiel.apps.googleusercontent.com
+  webClientId: 953055538475-hc0q9gvdpcf776hlc3obq3i559pb67rc.apps.googleusercontent.com
+  googleLoginbool: 0
+  username: 
+  _profilePic: {fileID: 0}
 --- !u!4 &687015239
 Transform:
   m_ObjectHideFlags: 0
@@ -852,6 +843,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027942781}
   m_CullTransparentMesh: 1
+--- !u!1 &1037410339
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1037410341}
+  - component: {fileID: 1037410340}
+  m_Layer: 0
+  m_Name: Loginbuttons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1037410340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037410339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b106c3a30b8ff4ad783c8cac01c30ed8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  googleLoginbtn: {fileID: 649551091}
+  fbLoginbtn: {fileID: 1986117365}
+  guestLoginbtn: {fileID: 1919653274}
+--- !u!4 &1037410341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037410339}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 540, y: 1206, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1158274322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,7 +1476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbe738e7a028542a4983653d434d589a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btn: {fileID: 1919653274}
+  guestLoginbool: 0
+  guestname: 
 --- !u!1 &1873342272
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,19 +2069,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1986117363}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2106355934}
-        m_TargetAssemblyTypeName: FaceBookLogin, Assembly-CSharp
-        m_MethodName: Login
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &2106355932
 GameObject:
   m_ObjectHideFlags: 0
@@ -2089,7 +2116,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FB_userName: {fileID: 1297871999}
   FB_userId: {fileID: 427917528}
-  FB_userDp: {fileID: 1324532027}
+  FB_userDp: {fileID: 0}
+  facebookLoginbool: 0
+  Name: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2100,3 +2129,4 @@ SceneRoots:
   - {fileID: 687015239}
   - {fileID: 2106355933}
   - {fileID: 1546719996}
+  - {fileID: 1037410341}

@@ -4,73 +4,132 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GuestLoginManager : MonoBehaviour
 {
 
-    private string dataFilePath;
-    private string playerName;
-    private string userid;
-    public Button btn;
-    public void Start()
+    private const string GuestDataFileName = "userData.json"; // JSON file name to store guest data
+    public static GuestLoginManager instance;
+    public bool guestLoginbool;
+    public string guestname;
+
+    // Serializable class for saving guest data as JSON
+    [System.Serializable]
+    public class GuestData
     {
-        btn.onClick.AddListener(GuestLogin);
-        dataFilePath = Path.Combine(Application.persistentDataPath, "userData.json");
-        LoadUserData();
+        public string guestId;
+        public int gameProgress;   // Track game progress, could be used for level or score
+        public string settings;
+        public string guestname;
+        public int currentLevel;   // Track the current level
     }
 
-    public void GuestLogin()
-    {
-        // guestName = nameInputField.text.Trim();
+    private string localDataPath;
 
-        if (string.IsNullOrEmpty(playerName))
+    private void Awake()
+    {
+        if (instance == null)
         {
-            playerName = "Guest_" + UnityEngine.Random.Range(1, 9).ToString(); // Generate a random guest name
-            
-            userid = UnityEngine.Random.Range(1000, 9999).ToString();
-            
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
 
-        // Save guest name to GameManager
-        UserData.Instance.UserName = playerName;
-        UserData.Instance.UserId = userid;
-        
-        // Save user data locally
-        SaveUserData(userid, playerName);
+        localDataPath = Application.persistentDataPath + "/GuestData.json";
+        LoadGuestDataFromFile();
+    }
 
-        
+    public void OnGuestLoginButtonClick()
+    {
+        if (!File.Exists(localDataPath))
+        {
+            // Generate a new guest ID, game progress, and settings
+            GuestData guestData = new GuestData
+            {
+                guestId = System.Guid.NewGuid().ToString(),
+                gameProgress = 0, // Initial progress
+                settings = "DefaultSettings", // Default settings
+                guestname = Random.Range(1, 9).ToString(),
+                currentLevel = 1 // Start at level 1
+            };
+
+            SaveGuestData(guestData); // Save the new guest data to the JSON file
+            Debug.Log("Guest ID created: " + guestData.guestId);
+            guestname = guestData.guestname;
+        }
+        else
+        {
+            GuestData guestData = LoadGuestDataFromFile();
+            Debug.Log("Guest already logged in with ID: " + guestData.guestId);
+        }
 
         SceneManager.LoadScene(1);
-        
-
+        guestLoginbool = true;
     }
 
-    private void SaveUserData(string userId, string name)
+    public void OnLogoutButtonClick()
     {
-        PlayerDataSave playerData = new PlayerDataSave
+        if (File.Exists(localDataPath))
         {
-            UserId = userId,
-            UserName = name,
-            
+            File.Delete(localDataPath);
+            Debug.Log("Guest data file deleted.");
+        }
 
-        };
-
-        string json = JsonUtility.ToJson(playerData);
-        File.WriteAllText(dataFilePath, json);
-        Debug.Log("User data saved: " + json);
+        Debug.Log("Guest data cleared");
+        SceneManager.LoadScene(0);
+        guestLoginbool = false;
     }
 
-    private void LoadUserData()
+    // Save guest data to JSON file
+    private void SaveGuestData(GuestData guestData)
     {
-        if (File.Exists(dataFilePath))
+        string jsonData = JsonUtility.ToJson(guestData, true); // Serialize guest data to JSON
+        File.WriteAllText(localDataPath, jsonData); // Write to file
+        Debug.Log("Guest data saved to file.");
+    }
+
+    // Load guest data from JSON file
+    private GuestData LoadGuestDataFromFile()
+    {
+        if (File.Exists(localDataPath))
         {
-            string json = File.ReadAllText(dataFilePath);
-            PlayerDataSave playerData = JsonUtility.FromJson<PlayerDataSave>(json);
-            UserData.Instance.UserId = playerData.UserId;
-            UserData.Instance.UserName = playerData.UserName;
-            // nameInputField.text = userData.Name; // Pre-fill the input field
-            Debug.Log("User data loaded: " + json);
+            string jsonData = File.ReadAllText(localDataPath);
+            return JsonUtility.FromJson<GuestData>(jsonData); // Deserialize JSON to GuestData object
+        }
+        else
+        {
+            Debug.LogError("Guest data file not found.");
+            return null; // Return null if the file does not exist
         }
     }
 
+    // Get the current level of the guest
+    public int GetCurrentLevel()
+    {
+        GuestData guestData = LoadGuestDataFromFile();
+        if (guestData != null)
+        {
+            return guestData.currentLevel;  // Return the saved current level
+        }
+        else
+        {
+            return 1; // Default to level 1 if no data found
+        }
+    }
+
+    // Increment the level and save progress
+    public void IncrementLevel()
+    {
+        GuestData guestData = LoadGuestDataFromFile();
+        if (guestData != null)
+        {
+            guestData.currentLevel++;  // Increment level
+            SaveGuestData(guestData);  // Save the updated guest data
+            Debug.Log("Level incremented to: " + guestData.currentLevel);
+        }
+    }
 }
