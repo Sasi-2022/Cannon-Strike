@@ -13,6 +13,8 @@ public class GuestLoginManager : MonoBehaviour
     public static GuestLoginManager instance;
     public bool guestLoginbool;
     public string guestname;
+    public int currentlevel;
+    public PlayerDataSO playerdata;
 
     // Serializable class for saving guest data as JSON
     [System.Serializable]
@@ -52,9 +54,9 @@ public class GuestLoginManager : MonoBehaviour
             {
                 guestId = System.Guid.NewGuid().ToString(),
                 gameProgress = 0, // Initial progress
-                settings = "DefaultSettings", // Default settings
+               // settings = "DefaultSettings", // Default settings
                 guestname = Random.Range(1, 9).ToString(),
-                currentLevel = 1 // Start at level 1
+                currentLevel = playerdata.player.PlayerCurrentLevel // Start at level 1
             };
 
             SaveGuestData(guestData); // Save the new guest data to the JSON file
@@ -64,6 +66,8 @@ public class GuestLoginManager : MonoBehaviour
         else
         {
             GuestData guestData = LoadGuestDataFromFile();
+            guestname = guestData.guestname;
+            currentlevel = guestData.currentLevel;
             Debug.Log("Guest already logged in with ID: " + guestData.guestId);
         }
 
@@ -82,6 +86,7 @@ public class GuestLoginManager : MonoBehaviour
         Debug.Log("Guest data cleared");
         SceneManager.LoadScene(0);
         guestLoginbool = false;
+        playerdata.player.PlayerCurrentLevel = 1;
     }
 
     // Save guest data to JSON file

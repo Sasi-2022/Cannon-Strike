@@ -1478,6 +1478,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guestLoginbool: 0
   guestname: 
+  currentlevel: 0
+  playerdata: {fileID: 11400000, guid: 54563f30f59b2426ea33426985064ceb, type: 2}
 --- !u!1 &1873342272
 GameObject:
   m_ObjectHideFlags: 0
@@ -2114,11 +2116,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3003b53a61ae84a5fae952a7b663491b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FB_userName: {fileID: 1297871999}
-  FB_userId: {fileID: 427917528}
-  FB_userDp: {fileID: 0}
-  facebookLoginbool: 0
   Name: 
+  fbProfilepicTexture: {fileID: 0}
+  FBLoginbool: 0
+  currentlevel: 0
+  playerdata: {fileID: 11400000, guid: 54563f30f59b2426ea33426985064ceb, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

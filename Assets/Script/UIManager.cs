@@ -83,6 +83,7 @@ public class UIManager : MonoBehaviour
             // GameplayController.instance.currentlevel++;
             GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel++;
             GameplayController.instance.IncrementLevel();
+            GuestLoginManager.instance.IncrementLevel();
             // PlayerPrefs.SetInt("level",1);
 
         }

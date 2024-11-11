@@ -46,7 +46,7 @@ public class UserDetail : MonoBehaviour
         {
             GSignIn();
         }
-        else if (FaceBookLogin.instance.facebookLoginbool == true)
+        else if (FaceBookLogin.instance.FBLoginbool == true)
         {
             FBSignIn();
         }
@@ -74,7 +74,7 @@ public class UserDetail : MonoBehaviour
         guestProfilepic.gameObject.SetActive(false);
         Name = FaceBookLogin.instance.Name;
         userName.text = Name;
-        UserProfile2 = FaceBookLogin.instance.FB_userDp;
+        UserProfile2 = FaceBookLogin.instance.fbProfilepicTexture;
         fProfilepic.texture = UserProfile2;
     }
 
@@ -93,9 +93,9 @@ public class UserDetail : MonoBehaviour
         {
             GoogleLogin.instance.OnSignOut();
         }
-        else if (FaceBookLogin.instance.facebookLoginbool == true)
+        else if (FaceBookLogin.instance.FBLoginbool == true)
         {
-            FaceBookLogin.instance.LogOut();
+            FaceBookLogin.instance.Facebook_LogOut();
         }
         else
         {

@@ -1,46 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Facebook.Unity;
 using UnityEngine.UI;
-using UnityEngine.Networking;
 using TMPro;
-using UnityEngine.Android;
+using Facebook.Unity;
+using System;
 using UnityEngine.SceneManagement;
-using System.IO;
-using UnityEngine.SceneManagement;
+using UnityEngine.Networking; // For fetching the profile picture from URL
 
 public class FaceBookLogin : MonoBehaviour
 {
-    public TextMeshProUGUI FB_userName;
-    public TextMeshProUGUI FB_userId;
-    public Texture FB_userDp;
-    private string localDataPath;
-    public static FaceBookLogin instance;
-    public bool facebookLoginbool;
     public string Name;
+    public static FaceBookLogin instance;
+    public Texture fbProfilepicTexture;
+    public bool FBLoginbool = false;
+    public int currentlevel;
+    private string localDataPath;
+    public PlayerDataSO playerdata;
 
-    // Serializable class to hold user data for JSON
     [System.Serializable]
     public class UserData
     {
-        public string userId;
         public string userName;
-        public string pictureURL;
+        public string userId;
+        public string profilePicUrl;
+        public int currentlevel;
+
     }
+
+    #region Initialize
 
     private void Awake()
     {
-        // Initialize Facebook SDK
+        // Set up local data file path
+        localDataPath = Application.persistentDataPath + "/facebook_user_data.json";
+
         if (!FB.IsInitialized)
         {
-            FB.Init(InitCallback);
+            FB.Init(() =>
+            {
+                if (FB.IsInitialized)
+                    FB.ActivateApp();
+                else
+                    Debug.Log("Couldn't initialize");
+            });
         }
         else
         {
             FB.ActivateApp();
         }
 
+        // Initialize singleton and prevent duplicate objects
         if (instance == null)
         {
             instance = this;
@@ -51,43 +61,34 @@ public class FaceBookLogin : MonoBehaviour
             Destroy(gameObject);
         }
 
-        localDataPath = Application.persistentDataPath + "/FacebookData.json";
-        LoadLocalData(); // Load local data if available
+        // Load the data from local storage if available
+        LoadLocalData();
     }
 
-    private void InitCallback()
-    {
-        if (FB.IsInitialized)
-        {
-            FB.ActivateApp();
-        }
-        else
-        {
-            Debug.Log("Failed to initialize the Facebook SDK");
-        }
-    }
+    #endregion
 
-    private void SetInit()
+    void SetInit()
     {
         if (FB.IsLoggedIn)
         {
             Debug.Log("Facebook is logged in!");
-            string s = "client token " + FB.ClientToken + " User Id " + AccessToken.CurrentAccessToken.UserId;
-            DealWithFbMenus(true);
+            string s = "client token: " + FB.ClientToken + " User Id: " + AccessToken.CurrentAccessToken.UserId;
         }
         else
         {
             Debug.Log("Facebook is not logged in!");
-            DealWithFbMenus(false);
         }
+        DealWithFbMenus(FB.IsLoggedIn);
     }
 
-    private void DealWithFbMenus(bool isLoggedIn)
+    void DealWithFbMenus(bool isLoggedIn)
     {
         if (isLoggedIn)
         {
             FB.API("/me?fields=first_name", HttpMethod.GET, DisplayUsername);
             FB.API("/me/picture?type=square&height=128&width=128", HttpMethod.GET, DisplayProfilePic);
+            SceneManager.LoadScene(1);
+            FBLoginbool = true;
         }
         else
         {
@@ -95,17 +96,17 @@ public class FaceBookLogin : MonoBehaviour
         }
     }
 
-    private void DisplayUsername(IResult result)
+    void DisplayUsername(IResult result)
     {
         if (result.Error == null)
         {
             string name = result.ResultDictionary["first_name"].ToString();
             Name = name;
-            FB_userName.text = name; // Update username on UI
             Debug.Log("Username: " + name);
-
-            // Fetch additional data (ID, picture)
-            FB.API("/me?fields=id", HttpMethod.GET, UserDataCallback);
+            currentlevel = playerdata.player.PlayerCurrentLevel;
+            // Save user data locally
+            string userId = AccessToken.CurrentAccessToken.UserId;
+            SaveLocalData(name, userId, "",currentlevel); // Save name and userId, profilePicUrl is optional here
         }
         else
         {
@@ -113,23 +114,43 @@ public class FaceBookLogin : MonoBehaviour
         }
     }
 
-    public void Login()
+    void DisplayProfilePic(IGraphResult result)
     {
-        if (!FB.IsLoggedIn)
+        if (result.Texture != null)
         {
-            FB.LogInWithReadPermissions(new List<string> { "public_profile", "email" }, LoginCallback);
+            Debug.Log("Profile picture loaded.");
+            fbProfilepicTexture = result.Texture;
+
+            // Save the profile picture URL (or texture)
+            string profilePicUrl = result.RawResult; // Or extract the URL from result if needed
+            SaveLocalData(Name, AccessToken.CurrentAccessToken.UserId, profilePicUrl,currentlevel);
         }
         else
         {
-            Debug.Log("Already logged in to Facebook");
+            Debug.Log(result.Error);
         }
     }
 
-    private void LoginCallback(ILoginResult result)
+
+
+    // Login
+    public void Facebook_LogIn()
+    {
+        List<string> permissions = new List<string>();
+        permissions.Add("public_profile");
+        FB.LogInWithReadPermissions(permissions, AuthCallBack);
+    }
+
+    void AuthCallBack(IResult result)
     {
         if (FB.IsLoggedIn)
         {
             SetInit();
+            var aToken = AccessToken.CurrentAccessToken;
+            foreach (string perm in aToken.Permissions)
+            {
+                Debug.Log(perm);
+            }
         }
         else
         {
@@ -137,73 +158,58 @@ public class FaceBookLogin : MonoBehaviour
         }
     }
 
-    private void UserDataCallback(IGraphResult result)
+    // Logout
+    public void Facebook_LogOut()
     {
-        if (result.Error != null)
-        {
-            Debug.Log("Error retrieving user data: " + result.Error);
-        }
-        else
-        {
-            var userData = result.ResultDictionary;
-            string userId = userData["id"].ToString();
-            string firstName = userData["first_name"].ToString();
-            FB_userId.text = userId;
-
-            // Save user data locally
-            SaveLocalData(userId, firstName);
-
-            // Now fetch the profile picture
-            FB.API("/me/picture?redirect=false&type=large", HttpMethod.GET, DisplayProfilePic);
-
-            facebookLoginbool = true;
-            // Optionally transition to a new scene here after everything is loaded
-            SceneManager.LoadScene(1);
-        }
+        LogOut();
     }
 
-    private void DisplayProfilePic(IGraphResult result)
+    private void LogOut()
     {
-        if (result.Texture != null)
+        FB.LogOut();
+        Name = "";
+        fbProfilepicTexture = null;
+        playerdata.player.PlayerCurrentLevel = 1;
+        // Delete the local file
+        if (System.IO.File.Exists(localDataPath))
         {
-            FB_userDp = result.Texture;
-            // Optionally update UI with the profile picture (e.g., rawImg.texture)
-            Debug.Log("Profile Pic loaded successfully.");
+            System.IO.File.Delete(localDataPath);
+            Debug.Log("Local data deleted.");
         }
-        else
-        {
-            Debug.Log(result.Error);
-        }
+
+        SceneManager.LoadScene(0); // Go back to the login scene
     }
 
-    private void SaveLocalData(string userId, string userName, string pictureURL = "")
+    #region Local Data Methods
+
+    private void SaveLocalData(string userName, string userId, string profilePicUrl,int level)
     {
         UserData userData = new UserData
         {
-            userId = userId,
             userName = userName,
-            pictureURL = pictureURL
+            userId = userId,
+            profilePicUrl = profilePicUrl,
+            currentlevel = level
         };
 
         string jsonData = JsonUtility.ToJson(userData);
-        File.WriteAllText(localDataPath, jsonData);
-        Debug.Log("Data saved locally.");
+        System.IO.File.WriteAllText(localDataPath, jsonData);
+        Debug.Log("User data saved locally.");
     }
 
     private void LoadLocalData()
     {
-        if (File.Exists(localDataPath))
+        if (System.IO.File.Exists(localDataPath))
         {
-            string jsonData = File.ReadAllText(localDataPath);
+            string jsonData = System.IO.File.ReadAllText(localDataPath);
             UserData userData = JsonUtility.FromJson<UserData>(jsonData);
 
-            FB_userId.text = userData.userId;
-            FB_userName.text = userData.userName;
-
-            if (!string.IsNullOrEmpty(userData.pictureURL))
+            Name = userData.userName;
+            Debug.Log("Loaded user data: " + Name);
+            // Optionally, load profile picture URL or texture here
+            if (!string.IsNullOrEmpty(userData.profilePicUrl))
             {
-                Debug.Log("Data loaded from local storage.");
-                // StartCoroutine(FetchProfilePicture(userData.pictureURL)); // If URL is stored, fetch the profile pic
+                StartCoroutine(LoadProfilePicture(userData.profilePicUrl));
             }
         }
         else
@@ -212,36 +218,55 @@ public class FaceBookLogin : MonoBehaviour
         }
     }
 
-    private void DeleteLocalData()
+    private IEnumerator LoadProfilePicture(string profilePicUrl)
     {
-        if (File.Exists(localDataPath))
-        {
-            File.Delete(localDataPath);
-            Debug.Log("Local data deleted.");
-        }
-    }
+        UnityWebRequest request = UnityWebRequestTexture.GetTexture(profilePicUrl);
+        yield return request.SendWebRequest();
 
-    public void LogOut()
-    {
-        if (FB.IsLoggedIn)
+        if (request.result == UnityWebRequest.Result.Success)
         {
-            FB.LogOut();
-            SceneManager.LoadScene(0); // Go back to the login scene
-            facebookLoginbool = false;
-            ResetUserData();
-            DeleteLocalData(); // Remove local data on logout
+            fbProfilepicTexture = ((DownloadHandlerTexture)request.downloadHandler).texture;
+            Debug.Log("Profile picture loaded.");
         }
         else
         {
-            Debug.Log("Not logged in to Facebook");
+            Debug.Log("Failed to load profile picture: " + request.error);
         }
     }
 
-    private void ResetUserData()
+    #endregion
+
+    #region Other
+
+    public void FacebookSharefeed()
     {
-        FB_userName.text = "New User";
-        FB_userId.text = "ID";
-        FB_userDp = null;
+        string url = "https:developers.facebook.com/docs/unity/reference/current/FB.ShareLink";
+        FB.ShareLink(
+            new Uri(url),
+            "Checkout COCO 3D channel",
+            "I just watched " + "22" + " times of this channel",
+            null,
+            ShareCallback);
     }
 
+    private static void ShareCallback(IShareResult result)
+    {
+        Debug.Log("ShareCallback");
+        SpentCoins(2, "sharelink");
+        if (result.Error != null)
+        {
+            Debug.LogError(result.Error);
+            return;
+        }
+        Debug.Log(result.RawResult);
+    }
+
+    public static void SpentCoins(int coins, string item)
+    {
+        var param = new Dictionary<string, object>();
+        param[AppEventParameterName.ContentID] = item;
+        FB.LogAppEvent(AppEventName.SpentCredits, (float)coins, param);
+    }
+
+    #endregion
 }

@@ -25,7 +25,7 @@ public class UserLogin : MonoBehaviour
 
     void FBLogin()
     {
-        FaceBookLogin.instance.Login();
+        FaceBookLogin.instance.Facebook_LogIn();
     }
 
     void guestLogin()

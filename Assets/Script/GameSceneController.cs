@@ -69,7 +69,9 @@ public class GameSceneController : MonoBehaviour
              Instantiate(level[0].cannon, cannonparent.transform);
             levelheadername.sprite = level[0].levelname;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
-           // PlayerPrefs.Save();
+            PlayerPrefs.Save();
+           
+            
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 2)
         {
@@ -77,8 +79,8 @@ public class GameSceneController : MonoBehaviour
             Instantiate(level[1].cannon, cannonparent.transform);
             levelheadername.sprite = level[1].levelname;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
-           // PlayerPrefs.Save();
-
+            PlayerPrefs.Save();
+           
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 3)
         {
@@ -89,6 +91,8 @@ public class GameSceneController : MonoBehaviour
             level[2].rotation = Quaternion.Euler(new Vector3(0, 0, 47.5f));
             cannonparent.transform.rotation = level[2].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
+            
         }
 
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 4)
@@ -100,6 +104,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[3].position;
             cannonparent.transform.rotation = level[3].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
 
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 5)
@@ -110,6 +115,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[4].position;
             cannonparent.transform.rotation = level[4].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 6)
         {
@@ -119,6 +125,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[5].position;
             cannonparent.transform.rotation = level[5].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 7)
         {
@@ -128,6 +135,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[6].position;
             cannonparent.transform.rotation = level[6].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 8)
         {
@@ -138,6 +146,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[7].position;
             cannonparent.transform.rotation = level[7].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 9)
         {
@@ -147,6 +156,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[8].position;
             cannonparent.transform.rotation = level[8].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 10)
         {
@@ -156,6 +166,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[9].position;
             cannonparent.transform.rotation = level[9].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 11)
         {
@@ -166,6 +177,7 @@ public class GameSceneController : MonoBehaviour
             level[10].rotation = Quaternion.Euler(new Vector3(0, 0, -45.5f));
             cannonparent.transform.rotation = level[10].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 12)
         {
@@ -175,6 +187,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[11].position;
             cannonparent.transform.rotation = level[11].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 13)
         {
@@ -184,6 +197,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[12].position;
             cannonparent.transform.rotation = level[12].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
 
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 14)
@@ -194,6 +208,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[13].position;
             cannonparent.transform.rotation = level[13].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
 
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 15)
@@ -205,6 +220,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[14].position;
             cannonparent.transform.rotation = level[14].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 16)
         {
@@ -214,6 +230,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[15].position;
             cannonparent.transform.rotation = level[15].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 17)
         {
@@ -223,6 +240,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[16].position;
             cannonparent.transform.rotation = level[16].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 18)
         {
@@ -232,6 +250,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[17].position;
             cannonparent.transform.rotation = level[17].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 19)
         {
@@ -241,6 +260,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[18].position;
             cannonparent.transform.rotation = level[18].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 20)
         {
@@ -250,6 +270,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[19].position;
             cannonparent.transform.rotation = level[19].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 21)
         {
@@ -260,6 +281,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[20].position;
             cannonparent.transform.rotation = level[20].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 22)
         {
@@ -269,6 +291,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[21].position;
             cannonparent.transform.rotation = level[21].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 23)
         {
@@ -279,6 +302,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[22].position;
             cannonparent.transform.rotation = level[22].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 24)
         {
@@ -289,6 +313,7 @@ public class GameSceneController : MonoBehaviour
             level[23].rotation = Quaternion.Euler(new Vector3(0, 0, 84.7f));
             cannonparent.transform.rotation = level[23].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 25)
         {
@@ -298,6 +323,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[24].position;
             cannonparent.transform.rotation = level[24].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 26)
         {
@@ -307,6 +333,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[25].position;
             cannonparent.transform.rotation = level[25].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 27)
         {
@@ -318,6 +345,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[26].position;
             cannonparent.transform.rotation = level[26].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 28)
         {
@@ -328,6 +356,7 @@ public class GameSceneController : MonoBehaviour
             level[27].rotation = Quaternion.Euler(new Vector3(0, 0, -33.05f));
             cannonparent.transform.rotation = level[27].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 29)
         {
@@ -337,6 +366,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[28].position;
             cannonparent.transform.rotation = level[28].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 30)
         {
@@ -347,6 +377,7 @@ public class GameSceneController : MonoBehaviour
             level[29].rotation = Quaternion.Euler(new Vector3(0, 0, -90f));
             cannonparent.transform.rotation = level[29].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 31)
         {
@@ -357,6 +388,7 @@ public class GameSceneController : MonoBehaviour
             level[30].rotation = Quaternion.Euler(new Vector3(0, 0, 56));
             cannonparent.transform.rotation = level[30].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 32)
         {
@@ -366,6 +398,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[31].position;
             cannonparent.transform.rotation = level[31].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 33)
         {
@@ -375,6 +408,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[32].position;
             cannonparent.transform.rotation = level[32].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 34)
         {
@@ -387,6 +421,7 @@ public class GameSceneController : MonoBehaviour
             
             cannonparent.transform.rotation = level[33].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 35)
         {
@@ -396,6 +431,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[34].position;
             cannonparent.transform.rotation = level[34].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 36)
         {
@@ -406,6 +442,7 @@ public class GameSceneController : MonoBehaviour
             level[35].rotation = Quaternion.Euler(new Vector3(0, 0, -31.8f));
             cannonparent.transform.rotation = level[35].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 37)
         {
@@ -415,6 +452,7 @@ public class GameSceneController : MonoBehaviour
             cannonparent.transform.position = level[36].position;
             cannonparent.transform.rotation = level[36].rotation;
             PlayerPrefs.SetInt("playerlevel", currentlevel);
+            PlayerPrefs.Save();
         }
         if (GameplayController.instance.PlayerDataSO.player.PlayerCurrentLevel == 38)
         {
