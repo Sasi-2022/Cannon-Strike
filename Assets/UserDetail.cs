@@ -9,13 +9,13 @@ public class UserDetail : MonoBehaviour
 {
     //public UserDetails instance;
 
-    public Image gProfilepic;
+    public RawImage gProfilepic;
     public RawImage fProfilepic;
     public Image guestProfilepic;
 
     private string guestName = "Guest";
     public string Name;
-    public Sprite UserProfile;
+    public Texture UserProfile;
     public Texture UserProfile2;
 
     public TextMeshProUGUI userName;
@@ -63,8 +63,9 @@ public class UserDetail : MonoBehaviour
         guestProfilepic.gameObject.SetActive(false);
         Name = GoogleLogin.instance.username;
         userName.text = Name;
-        UserProfile = GoogleLogin.instance._profilePic;
-        gProfilepic.sprite = UserProfile;
+        UserProfile = GoogleLogin.instance._profilePic.texture;
+        Debug.LogError("userImage2");
+        gProfilepic.texture = UserProfile;
     }
 
     void FBSignIn()
