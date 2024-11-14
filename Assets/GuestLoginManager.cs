@@ -1,33 +1,35 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GuestLoginManager : MonoBehaviour
 {
-
-    private const string GuestDataFileName = "userData.json"; // JSON file name to store guest data
+    private const string GuestDataFileName = "userData.json";
     public static GuestLoginManager instance;
     public bool guestLoginbool;
     public string guestname;
     public int currentlevel;
     public PlayerDataSO playerdata;
 
-    // Serializable class for saving guest data as JSON
+    private string localDataPath;
+
+    
     [System.Serializable]
     public class GuestData
     {
         public string guestId;
-        public int gameProgress;   // Track game progress, could be used for level or score
-        public string settings;
-        public string guestname;
-        public int currentLevel;   // Track the current level
+        public string guestName;
+        public int currentLevel;  
     }
 
-    private string localDataPath;
+   
+    [System.Serializable]
+    public class AllGuestData
+    {
+        public List<GuestData> guestUsers = new List<GuestData>();
+    }
 
     private void Awake()
     {
@@ -41,100 +43,106 @@ public class GuestLoginManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        localDataPath = Application.persistentDataPath + "/GuestData.json";
+        
+        localDataPath = Application.persistentDataPath + "/" + GuestDataFileName;
         LoadGuestDataFromFile();
     }
 
+    
     public void OnGuestLoginButtonClick()
     {
         if (!File.Exists(localDataPath))
         {
-            // Generate a new guest ID, game progress, and settings
+            
             GuestData guestData = new GuestData
             {
                 guestId = System.Guid.NewGuid().ToString(),
-                gameProgress = 0, // Initial progress
-               // settings = "DefaultSettings", // Default settings
-                guestname = Random.Range(1, 9).ToString(),
-                currentLevel = playerdata.player.PlayerCurrentLevel // Start at level 1
+                guestName = "Guest_" + UnityEngine.Random.Range(1, 9999).ToString(),
+                currentLevel = 1 
             };
 
-            SaveGuestData(guestData); // Save the new guest data to the JSON file
+            SaveGuestData(guestData); 
             Debug.Log("Guest ID created: " + guestData.guestId);
-            guestname = guestData.guestname;
+            guestname = guestData.guestName;
+            currentlevel = guestData.currentLevel; 
         }
         else
         {
-            GuestData guestData = LoadGuestDataFromFile();
-            guestname = guestData.guestname;
-            currentlevel = guestData.currentLevel;
-            Debug.Log("Guest already logged in with ID: " + guestData.guestId);
+            
+            AllGuestData allGuestData = LoadGuestDataFromFile();
+            foreach (var guest in allGuestData.guestUsers)
+            {
+                if (guest.guestId != null)
+                {
+                    guestname = guest.guestName;
+                    currentlevel = guest.currentLevel; 
+                    Debug.Log("Guest already logged in with ID: " + guest.guestId);
+                    break;
+                }
+            }
         }
 
+        
         SceneManager.LoadScene(1);
         guestLoginbool = true;
     }
 
+    
     public void OnLogoutButtonClick()
     {
         if (File.Exists(localDataPath))
         {
-            File.Delete(localDataPath);
+            File.Delete(localDataPath); 
             Debug.Log("Guest data file deleted.");
         }
 
-        Debug.Log("Guest data cleared");
-        SceneManager.LoadScene(0);
+        
         guestLoginbool = false;
-        playerdata.player.PlayerCurrentLevel = 1;
+        SceneManager.LoadScene(0); 
     }
 
-    // Save guest data to JSON file
+    
     private void SaveGuestData(GuestData guestData)
     {
-        string jsonData = JsonUtility.ToJson(guestData, true); // Serialize guest data to JSON
-        File.WriteAllText(localDataPath, jsonData); // Write to file
+        AllGuestData allGuestData = LoadGuestDataFromFile(); 
+        allGuestData.guestUsers.Add(guestData); 
+
+        string jsonData = JsonUtility.ToJson(allGuestData, true); 
+        File.WriteAllText(localDataPath, jsonData); 
         Debug.Log("Guest data saved to file.");
     }
 
-    // Load guest data from JSON file
-    private GuestData LoadGuestDataFromFile()
+   
+    private AllGuestData LoadGuestDataFromFile()
     {
-        if (File.Exists(localDataPath))
+        if (File.Exists(localDataPath)) 
         {
-            string jsonData = File.ReadAllText(localDataPath);
-            return JsonUtility.FromJson<GuestData>(jsonData); // Deserialize JSON to GuestData object
+            string jsonData = File.ReadAllText(localDataPath); 
+            return JsonUtility.FromJson<AllGuestData>(jsonData); 
         }
         else
         {
-            Debug.LogError("Guest data file not found.");
-            return null; // Return null if the file does not exist
+            Debug.LogError("Guest data file not found at: " + localDataPath);
+            return new AllGuestData();  
         }
     }
 
-    // Get the current level of the guest
-    public int GetCurrentLevel()
+   
+    public void GetCurrentLevel()
     {
-        GuestData guestData = LoadGuestDataFromFile();
-        if (guestData != null)
-        {
-            return guestData.currentLevel;  // Return the saved current level
-        }
-        else
-        {
-            return 1; // Default to level 1 if no data found
-        }
+        AllGuestData allGuestData = LoadGuestDataFromFile();
+        currentlevel = playerdata.player.PlayerCurrentLevel; // Assign the current level from the player data
     }
 
-    // Increment the level and save progress
+    
     public void IncrementLevel()
     {
-        GuestData guestData = LoadGuestDataFromFile();
-        if (guestData != null)
-        {
-            guestData.currentLevel++;  // Increment level
-            SaveGuestData(guestData);  // Save the updated guest data
+        AllGuestData allGuestData = LoadGuestDataFromFile();
+        
+            GuestData guestData = allGuestData.guestUsers[0]; // Get the first guest in the list
+            guestData.currentLevel = playerdata.player.PlayerCurrentLevel; // Update current level based on player data
+            SaveGuestData(guestData); // Save the updated data
             Debug.Log("Level incremented to: " + guestData.currentLevel);
-        }
+        
     }
 }
