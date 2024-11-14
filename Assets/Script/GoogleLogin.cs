@@ -14,52 +14,57 @@
 //  limitations
 
 
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using Google;
-    using UnityEngine;
-    using UnityEngine.UI;
-    using UnityEngine.SceneManagement;
-    using System.Collections;
-    using System.IO;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
+using Google;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
+using System.Collections;
+
+
+
 
 public class GoogleLogin : MonoBehaviour
-    {
-
+{
     public Text statusText;
-    public string webClientId = "953055538475-hc0q9gvdpcf776hlc3obq3i559pb67rc.apps.googleusercontent.com";
+    public string webClientId = "953055538475-hc0q9gvdpcf776hlc3obq3i559pb67rc.apps.googleusercontent.com"; // Replace with your actual Web Client ID
     private GoogleSignInConfiguration configuration;
     private string localDataPath;
     public static GoogleLogin instance;
     public bool googleLoginbool;
     public string username;
-    public Sprite _profilePic;  
+    public Sprite _profilePic;
     private string imageURL;
     public int currentlevel;
     public PlayerDataSO playerdata;
 
-    
     [System.Serializable]
     public class UserData
     {
         public string displayName;
         public string email;
         public string userId;
-        public int currentlevel;
+        public int currentlevel;  
+    }
+
+    [System.Serializable]
+    public class AllUserData
+    {
+        public List<UserData> users = new List<UserData>();
     }
 
     private void Awake()
     {
-        
         configuration = new GoogleSignInConfiguration
         {
             WebClientId = webClientId,
             RequestIdToken = true
         };
 
-        
         if (instance == null)
         {
             instance = this;
@@ -70,14 +75,14 @@ public class GoogleLogin : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // Set the path for saving user data
+        
         localDataPath = Application.persistentDataPath + "/GoogleData.json";
-        LoadUserData();  // Attempt to load user data when the app starts
+        LoadUserData();  
     }
 
     private void Start()
     {
-        LoadUserData(); // Attempt to load user data when the app starts
+      //  LoadUserData(); 
     }
 
     public void OnSignIn()
@@ -86,36 +91,35 @@ public class GoogleLogin : MonoBehaviour
         GoogleSignIn.Configuration.UseGameSignIn = false;
         GoogleSignIn.Configuration.RequestIdToken = true;
 
-        GoogleSignIn.DefaultInstance.SignOut(); // Sign out if already signed in
+        GoogleSignIn.DefaultInstance.SignOut(); 
         StartCoroutine(SignInCoroutine());
         googleLoginbool = true;
     }
 
     IEnumerator SignInCoroutine()
     {
-        yield return new WaitForSeconds(0.2f);  // Slight delay for smoother sign-in
+        yield return new WaitForSeconds(0.2f);  
         GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished);
         GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnDetails);
         yield return new WaitForSeconds(0.3f);
-        SceneManager.LoadScene(1);  // Load a new scene after successful sign-in
+
+        
+        SceneManager.LoadScene(1);  
     }
 
     public void OnSignOut()
     {
         Debug.Log("Signing out...");
         GoogleSignIn.DefaultInstance.SignOut();
-        PlayerPrefs.DeleteKey("USERNAME");
-        PlayerPrefs.DeleteKey("LOGIN");
 
-        // Delete saved data file
-        if (File.Exists(localDataPath))
-        {
-            File.Delete(localDataPath);
-        }
-
-        currentlevel = 1;
-        SceneManager.LoadScene(0);  // Load the initial scene
+        
         googleLoginbool = false;
+
+        
+        _profilePic = null;
+
+        
+        SceneManager.LoadScene(0);  
     }
 
     public void OnDisconnect()
@@ -147,9 +151,9 @@ public class GoogleLogin : MonoBehaviour
         {
             username = task.Result.DisplayName;
             imageURL = task.Result.ImageUrl.ToString();
-            SaveUserData(task.Result);  // Save user data after successful sign-in
+            SaveUserData(task.Result);  
             Debug.Log("Profile Image URL: " + task.Result.ImageUrl.OriginalString);
-            StartCoroutine(GetTexture(imageURL));  // Retrieve the profile image
+            StartCoroutine(GetTexture(imageURL));  
         }
         else
         {
@@ -172,7 +176,7 @@ public class GoogleLogin : MonoBehaviour
 
             if (myTexture != null)
             {
-                // Create a sprite from the texture and assign it to _profilePic
+               
                 _profilePic = Sprite.Create(myTexture, new Rect(0, 0, myTexture.width, myTexture.height), new Vector2(0.5f, 0.5f));
                 Debug.Log("Profile Image Loaded.");
             }
@@ -183,24 +187,46 @@ public class GoogleLogin : MonoBehaviour
         }
     }
 
-    // Save user data locally in a JSON file
+    
     private void SaveUserData(GoogleSignInUser user)
     {
-        UserData userData = new UserData
-        {
-            displayName = user.DisplayName,
-            email = user.Email,
-            userId = user.UserId,
-            currentlevel = playerdata.player.PlayerCurrentLevel
-        };
+        AllUserData allUserData = LoadAllUserDataFromFile();
 
-        // Serialize to JSON and save to file
-        string jsonData = JsonUtility.ToJson(userData, true);
-        Debug.Log("Saving User Data: " + jsonData);  // Log the JSON data to ensure it's correct
+        
+        bool userExists = false;
+        foreach (var savedUser in allUserData.users)
+        {
+            if (savedUser.userId == user.UserId)
+            {
+                
+                savedUser.displayName = user.DisplayName;
+                savedUser.email = user.Email;
+                savedUser.currentlevel = playerdata.player.PlayerCurrentLevel;  
+                userExists = true;
+                break;
+            }
+        }
+
+        
+        if (!userExists)
+        {
+            UserData newUser = new UserData
+            {
+                displayName = user.DisplayName,
+                email = user.Email,
+                userId = user.UserId,
+                currentlevel = playerdata.player.PlayerCurrentLevel 
+            };
+            allUserData.users.Add(newUser);
+        }
+
+        
+        string jsonData = JsonUtility.ToJson(allUserData, true);
+        Debug.Log("Saving All User Data: " + jsonData);  
 
         try
         {
-            File.WriteAllText(localDataPath, jsonData);
+            File.WriteAllText(localDataPath, jsonData);  
             Debug.Log("User data saved to file.");
         }
         catch (System.Exception ex)
@@ -208,35 +234,83 @@ public class GoogleLogin : MonoBehaviour
             Debug.LogError("Error saving user data: " + ex.Message);
         }
 
-        // Optionally store basic info in PlayerPrefs
+        
         PlayerPrefs.SetString("USERNAME", user.DisplayName);
         PlayerPrefs.SetString("EMAIL", user.Email);
         PlayerPrefs.SetString("USER_ID", user.UserId);
+        PlayerPrefs.SetString("Level", playerdata.player.PlayerCurrentLevel.ToString());
         PlayerPrefs.Save();
     }
 
-    // Load user data from the JSON file
-    private void LoadUserData()
+    private AllUserData LoadAllUserDataFromFile()
     {
         if (File.Exists(localDataPath))
         {
             string jsonData = File.ReadAllText(localDataPath);
-            Debug.Log("Loaded JSON Data: " + jsonData);  // Log the loaded JSON
-            UserData loadedData = JsonUtility.FromJson<UserData>(jsonData);
-            AddStatusText("Welcome back: " + loadedData.displayName);
+            return JsonUtility.FromJson<AllUserData>(jsonData);
         }
-        else
-        {
-            Debug.Log("No user data found. Please log in.");
-        }
+        return new AllUserData();
     }
 
-    // Helper method to add status text to the UI
-    void AddStatusText(string text)
+    
+    private void LoadUserData()
     {
-        statusText.text += text + "\n";
-        Debug.Log(statusText.text);
+        string currentUserId = PlayerPrefs.GetString("USER_ID");  // Retrieve the currently logged-in user's ID
+
+        if (string.IsNullOrEmpty(currentUserId))
+        {
+            
+           // currentlevel = 1;
+           // playerdata.player.PlayerCurrentLevel = currentlevel;  
+            AddStatusText("New user! Starting at level 1.");
+            return;
+        }
+
+        
+        AllUserData allUserData = LoadAllUserDataFromFile();
+        foreach (var user in allUserData.users)
+        {
+            if (user.userId == currentUserId)
+            {
+                
+                currentlevel = user.currentlevel;
+                playerdata.player.PlayerCurrentLevel = currentlevel;
+                AddStatusText("Welcome back: " + user.displayName);
+                return;
+            }
+        }
+
+        
+        AddStatusText("New user! Starting at level 1.");
+        SaveUserDataAfterFirstLogin(currentUserId);  
     }
 
-}
+    
+    private void SaveUserDataAfterFirstLogin(string currentUserId)
+    {
+        UserData newUser = new UserData
+        {
+            userId = currentUserId,
+            displayName = "New User",  
+            email = "newuser@example.com",  
+            currentlevel = 1  
+        };
 
+        AllUserData allUserData = LoadAllUserDataFromFile();
+        allUserData.users.Add(newUser);
+        string jsonData = JsonUtility.ToJson(allUserData, true);
+        File.WriteAllText(localDataPath, jsonData);  
+
+        
+        PlayerPrefs.SetInt("Level", 1);
+        PlayerPrefs.Save();
+    }
+
+    private void AddStatusText(string text)
+    {
+        if (statusText != null)
+        {
+            statusText.text = text;
+        }
+    }
+}
