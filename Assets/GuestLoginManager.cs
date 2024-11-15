@@ -57,7 +57,7 @@ public class GuestLoginManager : MonoBehaviour
             GuestData guestData = new GuestData
             {
                 guestId = System.Guid.NewGuid().ToString(),
-                guestName = "Guest_" + UnityEngine.Random.Range(1, 9999).ToString(),
+                guestName = "_" + UnityEngine.Random.Range(1, 99).ToString(),
                 currentLevel = 1 
             };
 
@@ -90,11 +90,11 @@ public class GuestLoginManager : MonoBehaviour
     
     public void OnLogoutButtonClick()
     {
-        if (File.Exists(localDataPath))
-        {
-            File.Delete(localDataPath); 
-            Debug.Log("Guest data file deleted.");
-        }
+      //  if (File.Exists(localDataPath))
+       // {
+         //   File.Delete(localDataPath); 
+          //  Debug.Log("Guest data file deleted.");
+       // }
 
         
         guestLoginbool = false;

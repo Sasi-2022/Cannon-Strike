@@ -25,9 +25,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using System.Collections;
 
-
-
-
 public class GoogleLogin : MonoBehaviour
 {
     public Text statusText;
@@ -48,7 +45,7 @@ public class GoogleLogin : MonoBehaviour
         public string displayName;
         public string email;
         public string userId;
-        public int currentlevel;  
+        public int currentlevel;
     }
 
     [System.Serializable]
@@ -75,14 +72,13 @@ public class GoogleLogin : MonoBehaviour
             Destroy(gameObject);
         }
 
-        
         localDataPath = Application.persistentDataPath + "/GoogleData.json";
         LoadUserData();  
     }
 
     private void Start()
     {
-      //  LoadUserData(); 
+        
     }
 
     public void OnSignIn()
@@ -91,19 +87,19 @@ public class GoogleLogin : MonoBehaviour
         GoogleSignIn.Configuration.UseGameSignIn = false;
         GoogleSignIn.Configuration.RequestIdToken = true;
 
-        GoogleSignIn.DefaultInstance.SignOut(); 
+        GoogleSignIn.DefaultInstance.SignOut();
         StartCoroutine(SignInCoroutine());
         googleLoginbool = true;
+        LoadUserData();
     }
 
     IEnumerator SignInCoroutine()
     {
-        yield return new WaitForSeconds(0.2f);  
+        yield return new WaitForSeconds(0.2f);
         GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished);
         GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnDetails);
         yield return new WaitForSeconds(0.3f);
 
-        
         SceneManager.LoadScene(1);  
     }
 
@@ -112,13 +108,9 @@ public class GoogleLogin : MonoBehaviour
         Debug.Log("Signing out...");
         GoogleSignIn.DefaultInstance.SignOut();
 
-        
         googleLoginbool = false;
-
-        
         _profilePic = null;
 
-        
         SceneManager.LoadScene(0);  
     }
 
@@ -151,9 +143,9 @@ public class GoogleLogin : MonoBehaviour
         {
             username = task.Result.DisplayName;
             imageURL = task.Result.ImageUrl.ToString();
-            SaveUserData(task.Result);  
+            SaveUserData(task.Result);
             Debug.Log("Profile Image URL: " + task.Result.ImageUrl.OriginalString);
-            StartCoroutine(GetTexture(imageURL));  
+            StartCoroutine(GetTexture(imageURL));
         }
         else
         {
@@ -176,7 +168,6 @@ public class GoogleLogin : MonoBehaviour
 
             if (myTexture != null)
             {
-               
                 _profilePic = Sprite.Create(myTexture, new Rect(0, 0, myTexture.width, myTexture.height), new Vector2(0.5f, 0.5f));
                 Debug.Log("Profile Image Loaded.");
             }
@@ -187,12 +178,10 @@ public class GoogleLogin : MonoBehaviour
         }
     }
 
-    
     private void SaveUserData(GoogleSignInUser user)
     {
         AllUserData allUserData = LoadAllUserDataFromFile();
 
-        
         bool userExists = false;
         foreach (var savedUser in allUserData.users)
         {
@@ -215,18 +204,17 @@ public class GoogleLogin : MonoBehaviour
                 displayName = user.DisplayName,
                 email = user.Email,
                 userId = user.UserId,
-                currentlevel = playerdata.player.PlayerCurrentLevel 
+                currentlevel = playerdata.player.PlayerCurrentLevel  
             };
             allUserData.users.Add(newUser);
         }
 
-        
         string jsonData = JsonUtility.ToJson(allUserData, true);
-        Debug.Log("Saving All User Data: " + jsonData);  
+        Debug.Log("Saving All User Data: " + jsonData);
 
         try
         {
-            File.WriteAllText(localDataPath, jsonData);  
+            File.WriteAllText(localDataPath, jsonData);
             Debug.Log("User data saved to file.");
         }
         catch (System.Exception ex)
@@ -238,7 +226,7 @@ public class GoogleLogin : MonoBehaviour
         PlayerPrefs.SetString("USERNAME", user.DisplayName);
         PlayerPrefs.SetString("EMAIL", user.Email);
         PlayerPrefs.SetString("USER_ID", user.UserId);
-        PlayerPrefs.SetString("Level", playerdata.player.PlayerCurrentLevel.ToString());
+        PlayerPrefs.SetInt("Level", playerdata.player.PlayerCurrentLevel);  
         PlayerPrefs.Save();
     }
 
@@ -252,21 +240,10 @@ public class GoogleLogin : MonoBehaviour
         return new AllUserData();
     }
 
-    
     private void LoadUserData()
     {
-        string currentUserId = PlayerPrefs.GetString("USER_ID");  // Retrieve the currently logged-in user's ID
+        string currentUserId = PlayerPrefs.GetString("USER_ID");  
 
-        if (string.IsNullOrEmpty(currentUserId))
-        {
-            
-           // currentlevel = 1;
-           // playerdata.player.PlayerCurrentLevel = currentlevel;  
-            AddStatusText("New user! Starting at level 1.");
-            return;
-        }
-
-        
         AllUserData allUserData = LoadAllUserDataFromFile();
         foreach (var user in allUserData.users)
         {
@@ -275,35 +252,25 @@ public class GoogleLogin : MonoBehaviour
                 
                 currentlevel = user.currentlevel;
                 playerdata.player.PlayerCurrentLevel = currentlevel;
+
+               
+                PlayerPrefs.SetInt("Level", currentlevel);
+                PlayerPrefs.Save();
+
                 AddStatusText("Welcome back: " + user.displayName);
                 return;
             }
         }
 
         
-        AddStatusText("New user! Starting at level 1.");
-        SaveUserDataAfterFirstLogin(currentUserId);  
-    }
-
-    
-    private void SaveUserDataAfterFirstLogin(string currentUserId)
-    {
-        UserData newUser = new UserData
-        {
-            userId = currentUserId,
-            displayName = "New User",  
-            email = "newuser@example.com",  
-            currentlevel = 1  
-        };
-
-        AllUserData allUserData = LoadAllUserDataFromFile();
-        allUserData.users.Add(newUser);
-        string jsonData = JsonUtility.ToJson(allUserData, true);
-        File.WriteAllText(localDataPath, jsonData);  
+        currentlevel = 1;
+        playerdata.player.PlayerCurrentLevel = currentlevel;
 
         
         PlayerPrefs.SetInt("Level", 1);
         PlayerPrefs.Save();
+
+        AddStatusText("New user! Starting at level 1.");
     }
 
     private void AddStatusText(string text)
