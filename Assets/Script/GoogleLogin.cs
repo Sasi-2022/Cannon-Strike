@@ -56,11 +56,7 @@ public class GoogleLogin : MonoBehaviour
 
     private void Awake()
     {
-        configuration = new GoogleSignInConfiguration
-        {
-            WebClientId = webClientId,
-            RequestIdToken = true
-        };
+        
 
         if (instance == null)
         {
@@ -74,6 +70,18 @@ public class GoogleLogin : MonoBehaviour
 
         localDataPath = Application.persistentDataPath + "/GoogleData.json";
         LoadUserData();  
+    }
+
+    private void OnEnable()
+    {
+        configuration = new GoogleSignInConfiguration
+        {
+            WebClientId = webClientId,
+            RequestIdToken = true,
+            UseGameSignIn = false,
+            RequestEmail = true
+        };
+
     }
 
     private void Start()
@@ -145,7 +153,7 @@ public class GoogleLogin : MonoBehaviour
             imageURL = task.Result.ImageUrl.ToString();
             SaveUserData(task.Result);
             Debug.Log("Profile Image URL: " + task.Result.ImageUrl.OriginalString);
-            StartCoroutine(GetTexture(imageURL));
+            StartCoroutine(GetTexture(task.Result.ImageUrl.ToString()));
         }
         else
         {
@@ -155,27 +163,10 @@ public class GoogleLogin : MonoBehaviour
 
     IEnumerator GetTexture(string url)
     {
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
-        yield return www.SendWebRequest();
+        WWW www = new WWW(url);
+        yield return www;
 
-        if (www.result != UnityWebRequest.Result.Success)
-        {
-            Debug.LogError($"ProfileTexture --> ERROR --> {www.error} {www.responseCode}");
-        }
-        else
-        {
-            Texture2D myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture as Texture2D;
-
-            if (myTexture != null)
-            {
-                _profilePic = Sprite.Create(myTexture, new Rect(0, 0, myTexture.width, myTexture.height), new Vector2(0.5f, 0.5f));
-                Debug.Log("Profile Image Loaded.");
-            }
-            else
-            {
-                Debug.LogError("Profile image is null.");
-            }
-        }
+        _profilePic = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0, 0));
     }
 
     private void SaveUserData(GoogleSignInUser user)
