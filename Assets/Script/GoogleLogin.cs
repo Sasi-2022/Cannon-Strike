@@ -36,19 +36,20 @@ public class GoogleLogin : MonoBehaviour
     public bool googleLoginbool;
     public string username;
     public Sprite _profilePic;  
-    private string imageURL;
+    public string imageURL;
     public int currentlevel;
-    public PlayerDataSO playerdata;
+  //  public PlayerDataSO playerdata;
+   
 
     
-    [System.Serializable]
+   /* [System.Serializable]
     public class UserData
     {
         public string displayName;
         public string email;
         public string userId;
         public int currentlevel;
-    }
+    }*/
 
     private void Awake()
     {
@@ -71,13 +72,13 @@ public class GoogleLogin : MonoBehaviour
         }
 
         // Set the path for saving user data
-        localDataPath = Application.persistentDataPath + "/GoogleData.json";
-        LoadUserData();  // Attempt to load user data when the app starts
+       // localDataPath = Application.persistentDataPath + "/GoogleData.json";
+      //  LoadUserData();  // Attempt to load user data when the app starts
     }
 
     private void Start()
     {
-        LoadUserData(); // Attempt to load user data when the app starts
+       // LoadUserData(); // Attempt to load user data when the app starts
     }
 
     public void OnSignIn()
@@ -94,10 +95,14 @@ public class GoogleLogin : MonoBehaviour
     IEnumerator SignInCoroutine()
     {
         yield return new WaitForSeconds(0.2f);  // Slight delay for smoother sign-in
-        GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished);
-        GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnDetails);
+        GoogleSignIn.DefaultInstance.SignIn().ContinueWith(
+            OnAuthenticationFinished, TaskScheduler.Default);
+        GoogleSignIn.DefaultInstance.SignIn().ContinueWith(
+           OnDetails, TaskScheduler.Default);
         yield return new WaitForSeconds(0.3f);
-        SceneManager.LoadScene(1);  // Load a new scene after successful sign-in
+        SceneManager.LoadScene(1);
+        StartCoroutine(GetTexture(imageURL));
+        // Load a new scene after successful sign-in
     }
 
     public void OnSignOut()
@@ -108,10 +113,10 @@ public class GoogleLogin : MonoBehaviour
         PlayerPrefs.DeleteKey("LOGIN");
 
         // Delete saved data file
-        if (File.Exists(localDataPath))
-        {
-            File.Delete(localDataPath);
-        }
+      //  if (File.Exists(localDataPath))
+      //  {
+       //     File.Delete(localDataPath);
+       // }
 
         currentlevel = 1;
         SceneManager.LoadScene(0);  // Load the initial scene
@@ -143,48 +148,31 @@ public class GoogleLogin : MonoBehaviour
 
     internal void OnDetails(Task<GoogleSignInUser> task)
     {
-        if (task.IsCompletedSuccessfully)
-        {
+        
             username = task.Result.DisplayName;
-            imageURL = task.Result.ImageUrl.ToString();
-            SaveUserData(task.Result);  // Save user data after successful sign-in
+            imageURL = task.Result.ImageUrl?.ToString();
+          //  SaveUserData(task.Result);  // Save user data after successful sign-in
             Debug.Log("Profile Image URL: " + task.Result.ImageUrl.OriginalString);
-            StartCoroutine(GetTexture(imageURL));  // Retrieve the profile image
-        }
-        else
-        {
-            Debug.LogError("Failed to fetch user details.");
-        }
+            StartCoroutine(GetTexture(task.Result.ImageUrl.ToString()));  // Retrieve the profile image
+        
+    }
+    internal void OnImage(Task<GoogleSignInUser> task)
+    {
+        imageURL = task.Result.ImageUrl.OriginalString;
+        StartCoroutine(GetTexture(imageURL));
     }
 
-    IEnumerator GetTexture(string url)
+    IEnumerator GetTexture(string imageUrl)
     {
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
-        yield return www.SendWebRequest();
+        WWW www = new WWW(imageUrl);
+        yield return www;
 
-        if (www.result != UnityWebRequest.Result.Success)
-        {
-            Debug.LogError($"ProfileTexture --> ERROR --> {www.error} {www.responseCode}");
-        }
-        else
-        {
-            Texture2D myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture as Texture2D;
-
-            if (myTexture != null)
-            {
-                // Create a sprite from the texture and assign it to _profilePic
-                _profilePic = Sprite.Create(myTexture, new Rect(0, 0, myTexture.width, myTexture.height), new Vector2(0.5f, 0.5f));
-                Debug.Log("Profile Image Loaded.");
-            }
-            else
-            {
-                Debug.LogError("Profile image is null.");
-            }
-        }
+        _profilePic = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0, 0));
+       
     }
 
     // Save user data locally in a JSON file
-    private void SaveUserData(GoogleSignInUser user)
+ /*   private void SaveUserData(GoogleSignInUser user)
     {
         UserData userData = new UserData
         {
@@ -213,10 +201,10 @@ public class GoogleLogin : MonoBehaviour
         PlayerPrefs.SetString("EMAIL", user.Email);
         PlayerPrefs.SetString("USER_ID", user.UserId);
         PlayerPrefs.Save();
-    }
+    }*/
 
     // Load user data from the JSON file
-    private void LoadUserData()
+   /* private void LoadUserData()
     {
         if (File.Exists(localDataPath))
         {
@@ -229,7 +217,7 @@ public class GoogleLogin : MonoBehaviour
         {
             Debug.Log("No user data found. Please log in.");
         }
-    }
+    }*/
 
     // Helper method to add status text to the UI
     void AddStatusText(string text)

@@ -749,6 +749,8 @@ MonoBehaviour:
   googleLoginbool: 0
   username: 
   _profilePic: {fileID: 0}
+  imageURL: 
+  currentlevel: 0
 --- !u!4 &687015239
 Transform:
   m_ObjectHideFlags: 0
