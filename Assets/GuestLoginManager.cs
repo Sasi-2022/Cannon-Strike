@@ -17,7 +17,7 @@ public class GuestLoginManager : MonoBehaviour
     public PlayerDataSO playerdata;
 
     // Serializable class for saving guest data as JSON
-   /* [System.Serializable]
+    [System.Serializable]
     public class GuestData
     {
         public string guestId;
@@ -25,9 +25,9 @@ public class GuestLoginManager : MonoBehaviour
         public string settings;
         public string guestname;
         public int currentLevel;   // Track the current level
-    }*/
+    }
 
-   // private string localDataPath;
+    private string localDataPath;
 
     private void Awake()
     {
@@ -42,7 +42,7 @@ public class GuestLoginManager : MonoBehaviour
         }
 
       //  localDataPath = Application.persistentDataPath + "/GuestData.json";
-       // LoadGuestDataFromFile();
+        LoadGuestDataFromFile();
     }
 
     public void OnGuestLoginButtonClick()
@@ -90,15 +90,15 @@ public class GuestLoginManager : MonoBehaviour
     }
 
     // Save guest data to JSON file
-  /*  private void SaveGuestData(GuestData guestData)
+    private void SaveGuestData(GuestData guestData)
     {
         string jsonData = JsonUtility.ToJson(guestData, true); // Serialize guest data to JSON
         File.WriteAllText(localDataPath, jsonData); // Write to file
         Debug.Log("Guest data saved to file.");
-    }*/
+    }
 
     // Load guest data from JSON file
-  /*  private GuestData LoadGuestDataFromFile()
+    private GuestData LoadGuestDataFromFile()
     {
         if (File.Exists(localDataPath))
         {
@@ -136,5 +136,5 @@ public class GuestLoginManager : MonoBehaviour
             SaveGuestData(guestData);  // Save the updated guest data
             Debug.Log("Level incremented to: " + guestData.currentLevel);
         }
-    }*/
+    }
 }

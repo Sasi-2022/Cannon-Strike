@@ -18,7 +18,7 @@ public class FaceBookLogin : MonoBehaviour
     private string localDataPath;
     public PlayerDataSO playerdata;
 
-  /*  [System.Serializable]
+    [System.Serializable]
     public class UserData
     {
         public string userName;
@@ -26,7 +26,7 @@ public class FaceBookLogin : MonoBehaviour
         public string profilePicUrl;
         public int currentlevel;
 
-    }*/
+    }
 
     #region Initialize
 
@@ -62,7 +62,7 @@ public class FaceBookLogin : MonoBehaviour
         }
 
         // Load the data from local storage if available
-       // LoadLocalData();
+        LoadLocalData();
     }
 
     #endregion
@@ -106,7 +106,7 @@ public class FaceBookLogin : MonoBehaviour
            // currentlevel = playerdata.player.PlayerCurrentLevel;
             // Save user data locally
             string userId = AccessToken.CurrentAccessToken.UserId;
-           // SaveLocalData(name, userId, "",currentlevel); // Save name and userId, profilePicUrl is optional here
+            SaveLocalData(name, userId, "",currentlevel); // Save name and userId, profilePicUrl is optional here
         }
         else
         {
@@ -123,7 +123,7 @@ public class FaceBookLogin : MonoBehaviour
 
             // Save the profile picture URL (or texture)
             string profilePicUrl = result.RawResult; // Or extract the URL from result if needed
-          //  SaveLocalData(Name, AccessToken.CurrentAccessToken.UserId, profilePicUrl,currentlevel);
+            SaveLocalData(Name, AccessToken.CurrentAccessToken.UserId, profilePicUrl,currentlevel);
         }
         else
         {
@@ -166,6 +166,7 @@ public class FaceBookLogin : MonoBehaviour
 
     private void LogOut()
     {
+        FBLoginbool = false;
         FB.LogOut();
         Name = "";
         fbProfilepicTexture = null;
@@ -182,7 +183,7 @@ public class FaceBookLogin : MonoBehaviour
 
     #region Local Data Methods
 
-  /*  private void SaveLocalData(string userName, string userId, string profilePicUrl,int level)
+    private void SaveLocalData(string userName, string userId, string profilePicUrl,int level)
     {
         UserData userData = new UserData
         {
@@ -195,9 +196,9 @@ public class FaceBookLogin : MonoBehaviour
         string jsonData = JsonUtility.ToJson(userData);
         System.IO.File.WriteAllText(localDataPath, jsonData);
         Debug.Log("User data saved locally.");
-    }*/
+    }
 
-   /* private void LoadLocalData()
+    private void LoadLocalData()
     {
         if (System.IO.File.Exists(localDataPath))
         {
@@ -216,7 +217,7 @@ public class FaceBookLogin : MonoBehaviour
         {
             Debug.Log("No local data found.");
         }
-    }*/
+    }
 
     private IEnumerator LoadProfilePicture(string profilePicUrl)
     {

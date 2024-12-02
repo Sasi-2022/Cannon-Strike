@@ -42,14 +42,14 @@ public class GoogleLogin : MonoBehaviour
    
 
     
-   /* [System.Serializable]
+    [System.Serializable]
     public class UserData
     {
         public string displayName;
         public string email;
         public string userId;
         public int currentlevel;
-    }*/
+    }
 
     private void Awake()
     {
@@ -73,7 +73,7 @@ public class GoogleLogin : MonoBehaviour
 
         // Set the path for saving user data
        // localDataPath = Application.persistentDataPath + "/GoogleData.json";
-      //  LoadUserData();  // Attempt to load user data when the app starts
+        LoadUserData();  // Attempt to load user data when the app starts
     }
 
     private void Start()
@@ -89,12 +89,13 @@ public class GoogleLogin : MonoBehaviour
 
         GoogleSignIn.DefaultInstance.SignOut(); // Sign out if already signed in
         StartCoroutine(SignInCoroutine());
-        googleLoginbool = true;
+       // googleLoginbool = true;
     }
 
     IEnumerator SignInCoroutine()
     {
-        yield return new WaitForSeconds(0.2f);  // Slight delay for smoother sign-in
+        googleLoginbool = true;
+        yield return new WaitForSeconds(0.05f);  // Slight delay for smoother sign-in
         GoogleSignIn.DefaultInstance.SignIn().ContinueWith(
             OnAuthenticationFinished, TaskScheduler.Default);
         GoogleSignIn.DefaultInstance.SignIn().ContinueWith(
@@ -119,8 +120,9 @@ public class GoogleLogin : MonoBehaviour
        // }
 
         currentlevel = 1;
-        SceneManager.LoadScene(0);  // Load the initial scene
         googleLoginbool = false;
+        SceneManager.LoadScene(0);  // Load the initial scene
+       
     }
 
     public void OnDisconnect()
@@ -172,14 +174,14 @@ public class GoogleLogin : MonoBehaviour
     }
 
     // Save user data locally in a JSON file
- /*   private void SaveUserData(GoogleSignInUser user)
+    private void SaveUserData(GoogleSignInUser user)
     {
         UserData userData = new UserData
         {
             displayName = user.DisplayName,
             email = user.Email,
             userId = user.UserId,
-            currentlevel = playerdata.player.PlayerCurrentLevel
+           // currentlevel = playerdata.player.PlayerCurrentLevel
         };
 
         // Serialize to JSON and save to file
@@ -201,10 +203,10 @@ public class GoogleLogin : MonoBehaviour
         PlayerPrefs.SetString("EMAIL", user.Email);
         PlayerPrefs.SetString("USER_ID", user.UserId);
         PlayerPrefs.Save();
-    }*/
+    }
 
     // Load user data from the JSON file
-   /* private void LoadUserData()
+    private void LoadUserData()
     {
         if (File.Exists(localDataPath))
         {
@@ -217,7 +219,7 @@ public class GoogleLogin : MonoBehaviour
         {
             Debug.Log("No user data found. Please log in.");
         }
-    }*/
+    }
 
     // Helper method to add status text to the UI
     void AddStatusText(string text)
